@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "merge_logs": true,
+      "name": "swyger_auth",
+      "script": "dist/server.js",
+      "exec_mode": "cluster",
+      "instances": "max",
+      "out_file": "out.log",
+      "error_file": "error.log",
+      "log_date_format": "MM/DD/YYYY HH:mm:ss"
+    }
+  ]
+}

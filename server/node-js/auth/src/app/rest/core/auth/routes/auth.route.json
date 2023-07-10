@@ -1,0 +1,3 @@
+{
+  "route": "@core/auth/routes/express"
+}

@@ -1,0 +1,19 @@
+#visit: https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: '3.9'
+services:
+  mailer:
+    container_name: swyger-mailer
+    image: coorise/swyger-nodejs-mailer:0.1.0
+    env_file: .env
+    #depends_on:
+      #- mongodb
+      #- auth
+    #volumes:
+      #- ./:/home/server/swyger/mailer
+      #- ./node_modules:/home/server/swyger/mailer/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${PORT}:${PORT}"
+    command: npm run dev
+

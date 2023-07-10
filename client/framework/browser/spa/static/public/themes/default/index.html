@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html id="root_html" lang="en">
+<head>
+  <title>Homepage | Swyger SPA</title>
+  <!-- Favicon icon-->
+  <link id="iconTheme" rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+
+  <template id="metaView">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Swyger SPA The most advanced Web Framework trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+  </template>
+  <!--begin::Global Stylesheets Custom-->
+  <link href="assets/custom/css/app.css" rel="preload stylesheet" as="style" type="text/css" crossorigin="anonymous">
+  <!--end::Global Stylesheets Custom-->
+</head>
+<body>
+  <!--Begin Main View-->
+  <div id="mainView" @vue:created="onCreated" @vue:mounted="onMounted"  v-scope>
+  </div>
+  <!--End  Main View-->
+  <!--Load  Scripts Below-->
+  <script src="../../assets/js/env.js"></script>
+  <script type="module" src="../../vendors/zero-md/dist/zero-md.min.js"></script>
+</body>
+</html>

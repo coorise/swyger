@@ -1,0 +1,17 @@
+{
+    "read":[
+        {
+            "position":"master",
+            "type":"mongodb",
+            "name":"default"
+        }
+
+    ],
+    "write":[
+        {
+            "position":"master",
+            "type":"mongodb",
+            "name":"default"
+        }
+    ]
+}

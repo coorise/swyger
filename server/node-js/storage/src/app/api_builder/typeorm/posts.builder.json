@@ -1,0 +1,18 @@
+{
+  "generate_api": false,
+  "name": "comments",
+  "old_name": "posts",
+  "parent_path": "api",
+  "child_path": "",
+  "model": {
+    "columns": {
+      "name": {
+        "type": "varchar"
+      },
+      "description": {
+        "type": "varchar",
+        "default": null
+      }
+    }
+  }
+}

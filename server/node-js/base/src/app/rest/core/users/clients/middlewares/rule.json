@@ -1,0 +1,35 @@
+{
+  "path": "/users/client",
+  "rule": {
+    "users": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": "auth.uid === $uid",
+
+        ".schema": {
+          "name": "string",
+          "email": "string",
+          "language": "'nl'|'en'|'de'|'fr'|'es'",
+          "birthdate?": "Date",
+          "address?": "Object"
+        },
+
+        "address": {
+          ".schema": {
+            "street": "string",
+            "city": "string",
+            "country": "string",
+            "geo?": "Object"
+          },
+
+          "geo": {
+            ".schema": {
+              "lat": "number",
+              "lon": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

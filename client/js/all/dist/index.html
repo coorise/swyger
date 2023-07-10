@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <title>
+        Swyger API
+    </title>
+</head>
+<body>
+    <div style="display: flex;flex-direction: column;justify-content: center">
+        <h1>
+            Welcome to Swyger API JS Client!
+        </h1>
+    </div>
+    <!-- Begin Script | Main App Entry  -->
+    <script>
+        // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client
+        //then save it somewhere in your directory like "swyger-client.min.js"
+
+        //import SwygerClient from './swyger-client.min.js'
+        //We will work with async/await because we encounter an issue using vite.js in development mode
+        //feel free to modify and use >>import SwygerClient from './swyger-client.min.js'<< in production mode  instead.
+        (async ()=>{
+            let SwygerClient= (await import('./swyger-client.min.js')).default
+            let config={
+                //Configure the ENV
+                ENV:'dev',
+
+                //Configure the offline DB
+                OFFLINE_DB_NAME:{
+                    AUTH:'swyger_auth',
+                    DATABASE:'swyger_database',
+                    STORAGE:'swyger_storage'
+                },
+
+                //Configure the server
+                HOST_SERVER:{
+                    AUTH:'http://localhost:4100',
+                    DATABASE:'http://localhost:4400',
+                    STORAGE:'http://localhost:4500',
+                },
+                API_VERSION:{
+                    AUTH:'/api/v1',
+                    DATABASE:'/api/v1',
+                    STORAGE:'/api/v1',
+                },
+                // A Unique Api key for all your servers
+                API_KEY:'your_api_key'
+            }
+            let client= SwygerClient.init(config)
+            //Authentication
+            let auth=client?.auth?.auth().user()
+            //auth.register({email,password},callback)
+            //...
+
+            //CRUD with database realtime
+            //let ref=client?.database?.database().ref('/your/path/reference') //like firebase
+            //ref.create({object},callback)
+            //OR listener
+            //ref.onValue(callback)
+            //...
+
+            //CRUD with File in realtime
+            /*let storageConfig={ //Discord/AWS/Google....
+                token:'discord-bot-token',
+                channelId:'discord-channel-id'
+            }*/
+            //let location='local' //discord/aws/google
+            //let storageRef=client?.storage?.storage(location,storageConfig).ref('/your/parent/ref')*/
+            //storageRef.upload({object},callback)
+            //...
+        })()
+
+    </script>
+    <!-- End Script | Main App Entry  -->
+</body>
+</html>

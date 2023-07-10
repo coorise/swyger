@@ -1,0 +1,20 @@
+#visit: https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: '3.9'
+services:
+  auth:
+    container_name: swyger-auth
+    image: coorise/swyger-nodejs-auth:0.1.0
+    build: ./
+    env_file: .env
+    #depends_on:
+      #- mongodb
+      #- base
+    volumes:
+      - ./:/home/server/swyger/auth
+      - ./node_modules:/home/server/swyger/auth/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${PORT}:${PORT}"
+    environment:
+      - ACE_HOST=${ACE_HOST}

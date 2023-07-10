@@ -1,0 +1,32 @@
+{
+  "generated_api": {
+    "type": "boolean",
+    "required": true
+  },
+  "name": {
+    "type": "varchar",
+    "default": null
+  },
+  "old_name": {
+    "type": "varchar",
+    "default": null
+  },
+  "parent_path": {
+    "type": "varchar",
+    "required": true
+  },
+  "child_parent": {
+    "type": "varchar",
+    "default": null
+  },
+  "model": {
+    "type": "object",
+    "required": true,
+    "properties": {
+      "columns": {
+        "type": "object",
+        "required": true
+      }
+    }
+  }
+}

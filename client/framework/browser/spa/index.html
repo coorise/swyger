@@ -1,0 +1,117 @@
+<!doctype html>
+<html id="root_html" env="dev" class="no-js" lang="en" @vue:created="onCreated" @vue:mounted="onMounted"  v-scope>
+
+<head>
+  <title>Swyger SPA</title>
+  <base href="./">
+  <script src="/public/assets/js/env.js"></script>
+  <script src="/public/assets/js/alias.js"></script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Content-Encoding" content="br,gzip">
+  <meta name="Accept-Encoding" content="br,gzip">
+  <meta name="SameSite" content="None">
+
+  <!--Begin SEO meta  -->
+  <meta name="theme-color" content="#3367D6">
+  <meta name="title" content="Agglomy">
+  <meta name="application-name" content="Agglomy">
+  <meta name="description" content="Agglomy">
+  <link rel="manifest" href="/webmanifest.json">
+  <link id="root_icon" rel="apple-touch-icon" href="/icon.png">
+
+  <!-- Load Meta Children   -->
+  <link id="root_meta">
+  <!-- End SEO meta -->
+
+  <!-- ////////////////////////////////////////////////////  -->
+
+  <!-- Begin CSS | Custom CSS  -->
+  <link href="/public/assets/css/app.css" rel="preload stylesheet" as="style" type="text/css" crossorigin="anonymous"/>
+  <link href="/public/assets/css/pop-up-modal.css" rel="preload stylesheet" as="style" type="text/css" crossorigin="anonymous"/>
+  <!-- End CSS | Custom CSS  -->
+
+  <!-- ////////////////////////////////////////////////////  -->
+
+  <!-- Begin CSS | Modernizer  -->
+  <link href="/public/assets/css/normalize.css" rel="preload stylesheet" as="style" type="text/css" crossorigin="anonymous"/>
+  <link href="/public/assets/css/main.css" rel="preload stylesheet" as="style" type="text/css" crossorigin="anonymous"/>
+  <!-- End CSS | Modernizer  -->
+
+</head>
+
+<body class="max_screen_body">
+    <div id="parentPopUpId" class="message_popup">
+      <div class="popup-container">
+        <div class="popup-modal">
+
+          <div class="details">
+            <h1 class="title">Swyger SPA v0.1.0</h1>
+            <p class="description">Build your static website faster!</p>
+          </div>
+
+          <p class="txt">
+            Message test for Pop Up, you can remove it from:<br>
+             -/index.hml.<br>
+             -/static/public/assets/css/pop-up-modal.css.<br>
+             -/static/public/assets/css/app.css#14 .messa_popup class.<br>
+            Useful for you in case you want to popup a message or modal from a child component: <br>
+            >> parent.getElementById('parentPopUpId')?.innerHTML=
+          </p>
+
+          <button class="btn close-modal">Close &rarr;</button>
+
+          <a class="link-1 close-modal"></a>
+
+        </div>
+      </div>
+    </div>
+    <iframe
+            title="Agglomy"
+            id="root_frame"
+            allowtransparency="true"
+            lang="en-US" class="iframe_full_screen"
+            sandbox="
+                allow-top-navigation
+                allow-scripts
+                allow-same-origin
+                allow-forms
+                allow-modals
+                allow-downloads
+                allow-popups"
+            loading="lazy" >
+      <div>Your browser does not support our web app</div>
+    </iframe>
+
+
+<!-- ////////////////////////////////////////////////////  -->
+
+<!-- Begin Script | Modernizer  -->
+  <script src="/public/vendors/modernizr/modernizr-3.11.2.min.js"></script>
+  <script src="/public/assets/js/plugins.js"></script>
+<!-- End Script | Modernizer  -->
+
+<!-- ////////////////////////////////////////////////////  -->
+
+
+<!-- Begin Script | Service Worker  -->
+  <script defer type="text/javascript" src="/public/assets/js/service.js"></script>
+<!-- End Script | Service Worker  -->
+
+<!-- ////////////////////////////////////////////////////  -->
+
+<!-- Begin Script | Main App Entry  -->
+  <script type="module" src="./src/index.js"></script>
+<!-- End Script | Main App Entry  -->
+
+
+<!-- Begin Script | Google Analytics  -->
+  <script src="/public/vendors/google-analytics/analytics.min.js" async></script>
+  <script defer src="/public/assets/js/ga.js"></script>
+<!-- End Script | Google Analytics  -->
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": "@swyger/base",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "generate:key": "cross-env NODE_ENV=development ts-node src/app/services/auth/jwt/cmd.js",
+    "test:dev": "cross-env NODE_ENV=development  mocha --require ts-node/register --exit  ./src/app/test/index.js",
+    "test:prod": "cross-env NODE_ENV=production mocha --require ts-node/register --exit  ./src/app/test/index.js",
+    "dev": "cross-env NODE_ENV=development  nodemon -L --exec ts-node src/server.js",
+    "build": "rimraf ./dist && tsc ",
+    "prod": "cross-env NODE_ENV=production node ./dist/server.js",
+    "start": "npm run build && npm run prod",
+    "restart": "npm run start",
+    "clean": "rimraf ./dist",
+    "lint": "eslint './src/**/*.{js,jsx,ts}'",
+    "lint:fix": "eslint './src/**/*.{js,jsx,ts}' --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.11.9",
+    "eslint": "^8.28.0",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "4.9.3"
+  },
+  "dependencies": {
+    "acebase-server": "1.18.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^9.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "module-alias": "^2.2.2",
+    "node-json-db": "^2.1.3"
+  }
+}

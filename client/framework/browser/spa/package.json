@@ -1,0 +1,53 @@
+{
+  "name": "@swyger/spa",
+  "version": "0.1.0",
+  "description": "Swyger SPA is used for Html Boilerplate to get started easily! ",
+  "type": "module",
+  "publishConfig": {
+    "ignore": [
+      ".git/",
+      ".idea/",
+      ".backup/",
+      "v*.zip/",
+      "static/",
+      "node_modules"
+    ]
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --minify && node  ./replace-src.js",
+    "build:dev": "vite build && node  ./replace-src.js",
+    "start": "vite preview"
+  },
+  "keywords": [
+    "Client",
+    "RestAPI",
+    "API",
+    "Swyger",
+    "Swyger Client",
+    "Boilerplate",
+    "CMS",
+    "SPA",
+    "Components"
+  ],
+  "author": "Agglomy",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "glob-all": "^3.3.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "sass": "^1.57.1",
+    "vite": "^3.2.3",
+    "vite-plugin-compression": "^0.5.1"
+  },
+  "dependencies": {
+    "head-manager": "^1.0.2",
+    "jquery": "^3.6.1",
+    "jwt-decode": "^3.1.2",
+    "path-browserify": "^1.0.1",
+    "petite-vue": "^0.4.1",
+    "spa-router-better": "^0.5.9",
+    "vue": "^3.2.45",
+    "zero-md": "^2.4.1"
+  }
+}

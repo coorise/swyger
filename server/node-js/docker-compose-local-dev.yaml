@@ -1,0 +1,107 @@
+#visit: https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: '3.9'
+services:
+  mongodb:
+    container_name: swyger-mongodb
+    image: mongo:4.4.6
+    env_file: .env
+    ports:
+      - "0.0.0.0:${MONGO_PORT}:${MONGO_PORT}"
+  base:
+    container_name: swyger-base
+    image: swyger/nodejs-base:0.1.0
+    restart: unless-stopped
+    build: #In case you did not publish on docker hub
+      context: ./base
+      dockerfile: Dockerfile-dev
+    env_file: .env
+    volumes:
+      - ./base:/home/server/swyger/base
+      - ./base/node_modules:/home/server/swyger/base/node_modules
+    command: npm run dev
+    ports:
+      - "${ACE_PORT}:${ACE_PORT}"
+      #environment: #Not required if you already set env_file
+      #Config for Swyger/base
+      #- ACE_HOST=${ACE_HOST}
+      #- ACE_NAME=swyger
+      #- ACE_ENABLE_HTTPS=false
+  mailer:
+    container_name: swyger-mailer
+    image: swyger/nodejs-mailer:0.1.0
+    restart: unless-stopped
+    env_file: .env
+    command: npm run dev
+    volumes:
+    - ./base:/home/server/swyger/mailer
+    - ./base/node_modules:/home/server/swyger/mailer/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${MAILER_PORT}:${MAILER_PORT}"
+  auth:
+    container_name: swyger-auth
+    image: swyger/nodejs-auth:0.1.0
+    build: #In case you did not publish on docker hub
+      context: ./auth
+      dockerfile: Dockerfile-dev
+    env_file: .env
+    depends_on:
+      - mongodb
+      - base
+      - mailer
+    volumes:
+      - ./auth:/home/server/swyger/auth
+      - ./auth/node_modules:/home/server/swyger/auth/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${AUTH_PORT}:${AUTH_PORT}"
+    command: npm run dev
+    environment:
+      - ACE_HOST=${ACE_HOST_CLIENT}
+
+  database:
+    container_name: swyger-database
+    image: swyger/nodejs-database:0.1.0
+    build: #In case you did not publish on docker hub
+      context: ./database
+      dockerfile: Dockerfile-dev
+    env_file: .env
+    depends_on:
+      - mongodb
+      - base
+      - auth
+    volumes:
+      - ./database:/home/server/swyger/database
+      - ./database/node_modules:/home/server/swyger/database/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${DATABASE_PORT}:${DATABASE_PORT}"
+    command: npm run dev
+    environment:
+      - ACE_HOST=${ACE_HOST_CLIENT}
+
+  storage:
+    container_name: swyger-storage
+    image: swyger/nodejs-storage:0.1.0
+    build: #In case you did not publish on docker hub
+      context: ./storage
+      dockerfile: Dockerfile-dev
+    env_file: .env
+    depends_on:
+      - mongodb
+      - base
+      - auth
+    volumes:
+      - ./storage:/home/server/swyger/storage
+      - ./storage/node_modules:/home/server/swyger/storage/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${STORAGE_PORT}:${STORAGE_PORT}"
+    command: npm run dev
+    environment:
+      - ACE_HOST=${ACE_HOST_CLIENT}
+

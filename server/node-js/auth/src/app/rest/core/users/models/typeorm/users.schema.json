@@ -1,0 +1,69 @@
+{
+  "name": "users",
+  "connexion": "core/users/connexions/typeorm/users.connexion.json",
+  "function": "@core/users/models/typeorm/users.model",
+  "columns": {
+    "extras": {
+      "type": "json",
+      "default": null
+    },
+    "acebaseToken": {
+      "type": "longtext",
+      "default": null
+    },
+    "email": {
+      "type": "varchar"
+    },
+    "password": {
+      "type": "varchar"
+    },
+    "status": {
+      "type": "varchar",
+      "default": "offline"
+    },
+    "isEmailFromLocal": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEmailVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPhoneVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPassCodeVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "emailCode": {
+      "type": "integer",
+      "default": null
+    },
+    "phoneCode": {
+      "type": "integer",
+      "default": null
+    },
+    "passwordCode": {
+      "type": "integer",
+      "default": null
+    },
+    "numberPhone": {
+      "type": "varchar",
+      "default": null
+    },
+    "emailCodeExpires": {
+      "type": "bigint",
+      "default": null
+    },
+    "passwordCodeExpires": {
+      "type": "bigint",
+      "default": null
+    },
+    "phoneCodeExpires": {
+      "type": "bigint",
+      "default": null
+    }
+  }
+}

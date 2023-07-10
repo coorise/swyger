@@ -1,0 +1,24 @@
+#visit: https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: '3.9'
+services:
+  base:
+    container_name: swyger-base
+    image: swyger/nodejs-base:0.1.0
+    restart: unless-stopped
+    build: #In case you did not publish on docker hub
+      context: ./
+      dockerfile: Dockerfile-dev
+    env_file: .env
+    volumes:
+      - ./:/home/server/swyger/base
+      - ./node_modules:/home/server/swyger/base/node_modules
+    command: npm run dev
+    ports:
+      - "${ACE_PORT}:${ACE_PORT}"
+      #environment: #Not required if you already set env_file
+      #Config for Swyger/base
+      #- ACE_HOST=${ACE_HOST}
+      #- ACE_NAME=swyger
+      #- ACE_ENABLE_HTTPS=false
+
+

@@ -1,0 +1,52 @@
+import createOne from "./parts/create-one";
+import createMany from "./parts/create-many";
+import findOne from "./parts/find-one";
+import findMany from "./parts/find-many";
+import deleteOne from "./parts/delete-one";
+import deleteMany from "./parts/delete-many";
+import updateOne from "./parts/update-one";
+import updateMany from "./parts/update-many";
+import sendOne from "./parts/send-one";
+import sendMany from "./parts/send-many";
+
+const rootApi = process.env.API_PATH ||'/api/v1';
+class TypeController{
+  constructor(service, name) {
+    this.service = service;
+    this._name = rootApi+'/'+name;
+
+    this.findOne = this.findOne.bind(this);
+    this.findMany = this.findMany.bind(this);
+    this.createOne = this.createOne.bind(this);
+    this.createMany = this.createMany.bind(this);
+    this.updateOne = this.updateOne.bind(this);
+    this.updateMany = this.updateMany.bind(this);
+    this.deleteOne = this.deleteOne.bind(this);
+    this.deleteMany = this.deleteMany.bind(this);
+
+    this.sendOne = this.sendOne.bind(this);
+    this.sendMany = this.sendMany.bind(this);
+  }
+
+  findOne =async (req, res, next)=> await findOne(this.service,this._name,req, res, next)
+  findMany =async (req, res, next)=> await findMany(this.service,this._name,req, res, next)
+  createOne =async (req, res, next)=> await createOne(this.service,this._name,req, res, next)
+  createMany =async (req, res, next)=> await createMany(this.service,this._name,req, res, next)
+  updateOne =async (req, res, next)=> await updateOne(this.service,this._name,req, res, next)
+  updateMany =async (req, res, next)=> await updateMany(this.service,this._name,req, res, next)
+  deleteOne =async (req, res, next)=> await deleteOne(this.service,this._name,req, res, next)
+  deleteMany =async (req, res, next)=> await deleteMany(this.service,this._name,req, res, next)
+
+  sendOne =async (req, res, next)=> await sendOne(this.service,this._name,req, res, next)
+  sendMany =async (req, res, next)=> await sendMany(this.service,this._name,req, res, next)
+
+
+
+
+}
+
+export {
+  sendOne,
+  sendMany,
+  TypeController
+}

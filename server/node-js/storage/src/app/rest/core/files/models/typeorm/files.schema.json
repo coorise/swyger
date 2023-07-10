@@ -1,0 +1,40 @@
+{
+  "name": "files",
+  "table": {
+    "name": "files"
+  },
+  "function": "@core/files/models/typeorm/files.model",
+  "columns": {
+    "isFolder": {
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "type": "varchar"
+    },
+    "size": {
+      "type": "bigint",
+      "default": 0
+    },
+    "storage": {
+      "type": "varchar",
+      "default": "local"
+    },
+    "type": {
+      "type": "varchar",
+      "default": "folder"
+    },
+    "extension": {
+      "type": "varchar",
+      "default": null
+    },
+    "path": {
+      "type": "varchar",
+      "default": "/"
+    },
+    "downloadUrl": {
+      "type": "varchar",
+      "default": null
+    }
+  }
+}

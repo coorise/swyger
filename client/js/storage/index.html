@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <title>
+        Swyger API
+    </title>
+</head>
+<body>
+<div style="display: flex;flex-direction: column;justify-content: center">
+    <h1>
+        Welcome to Swyger Storage API JS Client!
+    </h1>
+</div>
+<script type="module">
+    // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client-storage
+    //then save it somewhere in your directory like "/dist/swyger-client-storage.min.js"
+
+    //import SwygerStorageClient from "./src/index.js";
+    //We will work with async/await because we encounter an issue using vite.js in development mode
+    //feel free to modify and use >>import SwygerStorageClient from './src/index.js'<< in production mode  instead.
+    (async ()=>{
+        let SwygerStorageClient= (await import('./src/index.js')).default
+        let config={
+            //Configure the offline DB
+            OFFLINE_DB_NAME:{
+                DATABASE:'swyger_database'
+            },
+
+            //Configure the server
+            HOST_SERVER:{
+                AUTH:'http://localhost:4100', //Required for protected route
+                STORAGE:'http://localhost:4500',
+            },
+            API_VERSION:{
+                AUTH:'/api/v1',
+                STORAGE:'/api/v1',
+            },
+            // A Unique Api key for all your servers
+            API_KEY:'your_api_key'
+        }
+        let client= SwygerStorageClient.init(config)
+
+        //CRUD with File in realtime
+        let storageConfig={ //Discord(unlimited storage available with discord bot)/(soon AWS, Google)....
+            token:'discord-bot-token',
+            channelId:'discord-channel-id'
+        }
+        let location='local' //discord/aws/google
+        let storageRef=client?.storage(location,storageConfig).ref('/your/parent/ref') //like firebase storage
+        //storageRef.upload({object},callback)
+        //...
+    })()
+
+
+
+</script>
+</body>
+</html>

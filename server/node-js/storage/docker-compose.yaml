@@ -1,0 +1,20 @@
+#visit: https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: '3.9'
+services:
+  storage:
+    container_name: swyger-storage
+    image: coorise/swyger-nodejs-storage:0.1.0
+    env_file: .env
+    depends_on:
+      - mongodb
+      - base
+      - auth
+    #volumes:
+      #- ./:/home/server/swyger/storage
+      #- ./node_modules:/home/server/swyger/storage/node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "0.0.0.0:${PORT}:${PORT}"
+    environment:
+      - ACE_HOST=${ACE_HOST}

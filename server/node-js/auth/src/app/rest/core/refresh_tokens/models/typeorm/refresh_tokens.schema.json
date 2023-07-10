@@ -1,0 +1,48 @@
+{
+  "name": "refresh_tokens",
+  "function": "@core/refresh_tokens/models/typeorm/refresh_tokens.model",
+  "columns": {
+    "user_uid": {
+      "type": "varchar"
+    },
+    "isPrimaryToken": {
+      "type": "boolean",
+      "default": false
+    },
+    "isTokenVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "token": {
+      "type": "longtext"
+    },
+    "user_agent": {
+      "type": "varchar",
+      "default": null
+    },
+    "expireIn": {
+      "type": "bigint",
+      "default": null
+    },
+    "createdByIp": {
+      "type": "varchar",
+      "default": null
+    },
+    "revokedByIp": {
+      "type": "varchar",
+      "default": null
+    },
+    "previousToken": {
+      "type": "longtext",
+      "default": null
+    },
+    "tokenCode": {
+      "type": "integer",
+      "default": null
+    },
+    "tokenCodeExpires": {
+      "type": "bigint",
+      "default": null
+    }
+  }
+}

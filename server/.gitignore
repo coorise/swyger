@@ -1,0 +1,13 @@
+# Remove Ide files
+.idea/
+**/.idea/
+
+**/.env
+
+# Removing backup version for project
+**/.backup/
+**/v*.zip
+
+**/node_modules/
+**/logs/
+**/storage/storage/**

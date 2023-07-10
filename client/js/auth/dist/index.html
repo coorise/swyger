@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <title>
+        Swyger API
+    </title>
+</head>
+<body>
+<div style="display: flex;flex-direction: column;justify-content: center">
+    <h1>
+        Welcome to Swyger Auth API JS Client!
+    </h1>
+</div>
+<script type="module">
+    // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client-auth
+    //then save it somewhere in your directory like "swyger-client-auth.min.js"
+
+    //import SwygerAuthClient from "./swyger-client-auth.min.js";
+    //We will work with async/await because we encounter an issue using vite.js in development mode
+    //feel free to modify and use >>import SwygerAuthClient from './swyger-client-auth.min.js'<< in production mode  instead.
+    (async ()=>{
+        let SwygerAuthClient= (await import('./swyger-client-auth.min.js')).default
+        let config={
+            //Configure the offline DB
+            OFFLINE_DB_NAME:{
+                AUTH:'swyger_auth'
+            },
+
+            //Configure the server
+            HOST_SERVER:{
+                AUTH:'http://localhost:4100',
+
+            },
+            API_VERSION:{
+                AUTH:'/api/v1',
+            },
+            AUTO_REFRESH_TOKEN_TIMEOUT:1500000, //in millisecond= 25 minutes
+            // A Unique Api key for all your servers
+            API_KEY:'your_api_key'
+        }
+        let client= SwygerAuthClient.init(config)
+        //Authentication
+        let auth=client?.auth()
+        //auth.register({email,password},callback)
+        //auth.login({email,password},callback)
+        //...
+    })()
+
+
+</script>
+</body>
+</html>

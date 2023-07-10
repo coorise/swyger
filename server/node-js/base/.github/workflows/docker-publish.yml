@@ -1,0 +1,39 @@
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
+
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - master
+  #release:
+    #types: [ published ] #Triggers on publish, visit: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
+
+jobs:
+  release:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      #Use this docker/metadata-action action, if your image already exists and you want to get details about it.
+      #- name: Extract metadata (tags, labels) for Docker
+        #id: meta
+        #uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        #with:
+          #images: coorise/swyger-nodejs-base
+
+      - name: Build and push Docker coorise/swyger-nodejs-base image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: coorise/swyger-nodejs-base:0.1.0 , coorise/swyger-nodejs-base:latest
+          labels: coorise/swyger-nodejs-base

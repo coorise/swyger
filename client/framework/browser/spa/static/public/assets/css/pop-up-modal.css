@@ -1,0 +1,98 @@
+.popup-container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+
+}
+.popup-container:target {
+  display: flex;
+}
+.popup-modal {
+  width: 60rem;
+  padding: 4rem 2rem;
+  border-radius: .8rem;
+  color: hsl(0, 0%, 100%);
+  background: linear-gradient(to right bottom, red, blue);
+  box-shadow: .4rem .4rem 2.4rem .2rem hsla(236, 50%, 50%, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.details {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid hsla(0, 0%, 100%, .4);
+}
+.title {
+  font-size: 3.2rem;
+}
+.description {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-style: italic;
+}
+.txt {
+  padding: 0 4rem;
+  margin-bottom: 4rem;
+  font-size: 1.6rem;
+  line-height: 2;
+}
+.txt::before {
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid hsla(0, 0%, 100%, .2);
+  border-radius: 100rem;
+  pointer-events: none;
+}
+.btn {
+  padding: 1rem 1.6rem;
+  border: 1px solid hsla(0, 0%, 100%, .4);
+  border-radius: 100rem;
+  color: inherit;
+  background: transparent;
+  font-size: 1.4rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+  transition: .2s;
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus {
+  border-color: hsla(0, 0%, 100%, .6);
+  -webkit-transform: translateY(-.2rem);
+  transform: translateY(-.2rem);
+}
+
+.link-1 {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid hsla(0, 0%, 100%, .4);
+  border-radius: 100rem;
+  color: inherit;
+  font-size: 2.2rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+}
+.link-1::before {
+  content: '×';
+  -webkit-transform: translateY(-.1rem);
+  transform: translateY(-.1rem);
+}
+.link-1:hover,
+.link-1:focus {
+  border-color: hsla(0, 0%, 100%, .6);
+  -webkit-transform: translateY(-.2rem);
+  transform: translateY(-.2rem);
+}

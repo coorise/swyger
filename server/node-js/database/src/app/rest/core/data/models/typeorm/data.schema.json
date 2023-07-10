@@ -1,0 +1,11 @@
+{
+  "name": "data",
+  "connexion": "core/data/connexions/typeorm/data.connexion.json",
+  "function": "@core/data/models/typeorm/data.model",
+  "columns": {
+    "root": {
+      "type": "json",
+      "default": {}
+    }
+  }
+}

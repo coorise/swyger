@@ -1,0 +1,12 @@
+**/node_modules
+**/.idea
+**/.env
+**/logs
+**/.backup
+**/v*.zip
+**/storage/storage/**
+**/.vscode
+**/android/**/.gradle/
+**/android/**/build/
+**/.git
+**/..git

@@ -1,0 +1,23 @@
+{
+  "name": "mails",
+  "function": "@core/mails/models/mails.model",
+  "columns": {
+    "from": {
+      "type": "varchar",
+      "regex": {
+        "$regex": "^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$",
+        "flag":"i"
+      },
+      "example": "user@agglomy.com",
+      "required": true
+    },
+    "to": {
+      "type": "any",
+      "required": true
+    },
+    "subject": {
+      "type": "varchar",
+      "required": true
+    }
+  }
+}

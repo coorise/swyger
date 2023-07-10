@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <title>
+        Swyger API
+    </title>
+</head>
+<body>
+<div style="display: flex;flex-direction: column;justify-content: center">
+    <h1>
+        Welcome to Swyger Database API JS Client!
+    </h1>
+</div>
+<script type="module">
+    // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client-database
+    //then save it somewhere in your directory like "/dist/swyger-client-database.min.js"
+
+    //import SwygerDatabaseClient from './src/index.js'
+    //We will work with async/await because we encounter an issue using vite.js in development mode
+    //feel free to modify and use >>import SwygerDatabaseClient from './src/index.js'<< in production mode  instead.
+    (async ()=>{
+        let SwygerDatabaseClient=(await import('./src/index.js')).default
+        let config={
+            //Configure the offline DB
+            OFFLINE_DB_NAME:{
+                DATABASE:'swyger_database'
+            },
+
+            //Configure the server
+            HOST_SERVER:{
+                AUTH:'http://localhost:4100', //Required for protected route
+                DATABASE:'http://localhost:4400',
+            },
+            API_VERSION:{
+                AUTH:'/api/v1',
+                DATABASE:'/api/v1',
+            },
+            // A Unique Api key for all your servers
+            API_KEY:'your_api_key'
+        }
+        let client= SwygerDatabaseClient.init(config)
+
+        //CRUD with database realtime
+        let ref=client?.database().ref('/your/path/reference') //like firebase
+        //ref.create({object},callback)
+        //OR listener
+        //ref.onValue(callback)
+        //...
+    })()
+
+
+
+</script>
+</body>
+</html>
