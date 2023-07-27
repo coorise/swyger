@@ -37,3 +37,13 @@ jobs:
           push: true
           tags: coorise/swyger-nodejs-auth:0.1.0 , coorise/swyger-nodejs-auth:latest
           labels: coorise/swyger-nodejs-auth
+      #Readme: https://docs.docker.com/build/ci/github-actions/update-dockerhub-desc/
+      - name: Add README file for coorise/swyger-nodejs-auth
+        uses: peter-evans/dockerhub-description@v3
+        with:
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+            repository: coorise/swyger-nodejs-auth
+            readme-filepath: ./README.md
+            #short-description: Swyger Auth for Authentication(register,login,refresh token, forgot password...)
+            short-description: ${{ github.event.repository.description }}

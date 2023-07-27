@@ -5,7 +5,7 @@ class SchemaRoute extends ModelRoute{}
 const schemaRoute = new SchemaRoute('',schemaController)
 
 //---
-schemaRoute.requireAuth=[]
+//schemaRoute.requireAuth=[]
 //-----
 
 //------------You can modify the default value for CRUD----------------//

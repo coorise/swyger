@@ -8,25 +8,9 @@ Note: You must know how to use NodeJS: https://nodejs.org/en/docs/guides/getting
 **Swyger Base v0.1** is a good api Server for:
 - CRUD: Create/Read/Update/Delete in realtime
 
-### Requirements:
-- NodeJS v16 (https://nodejs.org/en/blog/release/v16.16.0)
-- Database Server: MongoDB(https://www.mongodb.com/try/download/community) / MySQL(https://dev.mysql.com/downloads/mysql/) /...etc
-- Docker(https://www.docker.com/products/docker-desktop/) and docker-compose(https://docs.docker.com/compose/install/) in case you want to add it in container
-
-### Install Dependencies
-```
-npm install
-```
-Note: Don't update the ``"acebase-server": "^1.16.2"``, because we edited it for our server! We noticed that their web manager UI is working with online resources, so we made it offline.
-
 ### Setup ENV Variables
-Locate the ``.env`` file or create it at the root of your project:
-
-
-- Configuration of Swyger Base
-
-To generate token: ``npm run generate:key -- --secret yoursecret --with-env`` or generate it online, visit https://www.javainuse.com/jwtgenerator
-
+Locate the <a href="https://github.com/coorise/swyger-nodejs-base/blob/master/.env.example">``.env.example``</a> file from the repo and create ``.env`` file at the root of your project:
+- Configuration of Acebase Server
 ```
 AUTH_ADMIN_TOKEN=token 
 ACE_HOST=localhost
@@ -36,20 +20,24 @@ ACE_ENABLE_HTTPS=false
 ACE_USER=admin
 ACE_PASS=SwygerBase@123
 ```
+## @Without Docker
+### Requirements:
+- NodeJS v16 (https://nodejs.org/en/blog/release/v16.16.0)
+- Database Server: MongoDB(https://www.mongodb.com/try/download/community) / MySQL(https://dev.mysql.com/downloads/mysql/) /...etc
+- Git: https://git-scm.com/downloads
+- 
+### Install Dependencies
+```
+git clone https://github.com/coorise/swyger-nodejs-base.git
+cd swyger-nodejs-base
+npm install
+```
+
+- Configuration of Swyger Base
+
+To generate token: ``npm run generate:key -- --secret yoursecret --with-env`` or generate it online, visit https://www.javainuse.com/jwtgenerator
+
 Note: Swyger Base server should also run on a different port and it is used by Swyger Auth/Database/Storage!
-
-
-### Create a custom API automatically
-It will create a file in ``./src/app/api_builder/typeorm``
-```
-npm run swyger -- --create api --name nameOfApi
-```
-Note: You can see the file ``./src/app/services/api/builder/typeorm/cmd.js`` (Still in test)
-
-### Run In Development Mode
-```
-npm run dev
-```
 
 ### Run In Production Mode
 ```
@@ -58,12 +46,23 @@ npm run prod
 # OR
 npm run start
 ```
+##  @With Docker
+### Requirements:
+- Docker(https://docs.docker.com/get-docker/) and docker-compose(https://docs.docker.com/compose/install/) in case you want to add it in container
+- Git: https://git-scm.com/downloads
 ### Run In Docker
 
 A ``Dockerfile`` and ``docker-compose.yaml`` are located at the root of your project
-- #### Build Image
+- #### Pull Swyger Base Image
 ```
-docker build -t swyger/base:0.1 .
+docker pull coorise/swyger-nodejs-base:0.1
+```
+--OR--------
+- #### Build Your Own Local Image
+```
+git clone https://github.com/coorise/swyger-nodejs-base.git
+cd swyger-nodejs-base
+docker build -t coorise/swyger-nodejs-base:0.1 .
 ```
 Note: The working docker directory will be in ``/home/server/swyger/base/``
 - #### Run Image In Container with Docker

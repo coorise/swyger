@@ -11,7 +11,7 @@ then save it somewhere in your directory like "/dist/swyger-client.min.js"
 ```
 <script type="module">
         import SwygerClient from './dist/swyger-client.min.js'
-        //import SwygerStorageClient from '@swyger/client-client' //with npm for node module
+        //import SwygerStorageClient from '@swyger/client' //with npm for node module
 
         let config={
             //Configure the offline DB

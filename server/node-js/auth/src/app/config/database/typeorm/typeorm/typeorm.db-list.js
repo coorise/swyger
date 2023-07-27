@@ -8,7 +8,7 @@ let localhost = process.env.DB_HOST || 'localhost'
 let port=process.env.DB_PORT || 27017
 
 //create database for mongo
-let dbName=process.env.DB_NAME||'swyger_auth'
+let dbName=process.env.DB_NAME||'swyger_database'
 let user={
     username:process.env.DB_USERNAME||'root',
     password:process.env.DB_PASSWORD||'',

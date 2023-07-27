@@ -1,311 +1,142 @@
-##About Docker
-Note: 
-```
-cmd: docker run container-name:version 
-```
-(if the image doesn't exist in local, it will try to 
-download externally to https://hub.docker.com/)
-
-##For node docker image 
-
-visit: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-
-Note: node:alpine = is the lightest linux distribution
-
-
-##Create docker image
-```
-cmd : docker build -t agglopy/auth:1.0 .
-```
--t = for tag , eg: -t aminity:1.0
-
-. = current dir
-
-##Show docker images list
-```
-cmd: docker image ls
-cmd: docker images
-```
-##Show docker process list
-```
-cmd: docker ps -a
-```
-##Run docker image container
-```
-cmd : docker run admin-backend
-```
-##Run docker container with interactive native linux shell
-```
-cmd : docker run  admin-backend -it
-```
-##Run docker with exposing host
-```
-cmd : docker run --name admin-backend -p 27017:27017 
--p 127.0.0.1:3306:3306 --expose=3500 --expose=3306 
---expose=27017 -d admin-backend
-```
-. -p = redirect right public(express) port to left private(docker) port , means outside docker
-
-. --expose = expose between containers
-
-. -d = for running in background
-
-You can use a following logs with:
-```
-cmd : docker logs --follow Container-name
-```
-
-##For myphpadmin and mysql docker:
-
-visit: https://hub.docker.com/r/phpmyadmin/phpmyadmin/
-
-visit: https://www.howtogeek.com/devops/how-to-run-phpmyadmin-in-a-docker-container/
-
-```
-cmd : docker run -p 3307:3306 --name mysql -e MYSQL_ROOT_PASSWORD=mypass123 -d mysql:8.0.1
-```
-```
-cmd : docker run -d --name phpmyadmin --link mysql:db -p 8081:80 phpmyadmin/phpmyadmin
-```
-
-
-##For mongo db docker:
-
-visit:https://phoenixnap.com/kb/docker-mongodb
-
-visit: https://www.mongodb.com/compatibility/docker
-
-```
-cmd : docker run -p 28017:27017 -it -v mongodata:/data/db --name mongodb -d mongo
-```
-
-Then create your database name for each databese server 
-
-##For docker compose: 
-docker-compose.yaml
-
-then,
-```
-cmd : docker-compose up
-```
-
-## For mounting project with volume:
-
-To see the default shared the folder directory:
-visit:https://stackoverflow.com/questions/30723839/where-are-docker-images-and-containers-stored-when-we-use-it-with-windows
-
-``Windows``: \\wsl$\docker-desktop-data\mnt\wsl\docker-desktop-data\data\docker\volumes
-
-``Linux``: sudo ls /mnt/wsl/docker-desktop-data/data/docker/volumes
-
------IN DEVELOPMENT MODE--------------
-
-Note: For our node js project we added in package.json , "nodemon -L"
- the -L for -legacy-watch when running in container.
-
-To run container and share the folder:
-```
-cmd (Windows) : docker run --name agglopy-auth -p 3500:80 -v ${pwd}:/home/server/auth/v1.0/agglopy_auth/ -v agglopy-auth-v1.0:/home/server/auth/v1.0/agglopy_auth/node_modules -d agglopy/auth:1.0
-cmd (Linux) : sudo docker run --name agglopy-auth-v1.0 -p 3500:80  -v "$(pwd)":/home/server/auth/v1.0/agglopy_auth/ -v agglopy-auth-v1.0:/home/server/auth/v1.0/agglopy_auth/node_modules --add-host=host.docker.internal:host-gateway agglopy/auth:1.0
-```
-the second "-v agglopy-auth-v1.0:/home/server/auth/v1.0/agglopy_auth/node_modules"
-volume  is to tell he will keep using /node_modules from docker folder
-because some bugs occured with modules whih require OS, 
-check this blog:
-https://www.richardkotze.com/top-tips/install-bcrypt-docker-image-exclude-host-node-modules
+## Server: Swyger Mailer with NodeJS
 
-Some note about shortcut directory:
-``Windows``: "%cd%" = current dir with CMD
+Visit the master branch: https://github.com/coorise/swyger-nodejs-mailer.git
 
-``Windows``: ${pwd} = current dir with PowerShell
 
-``Linus``: "$(pwd)" = current dir
+Note: You must know how to use NodeJS: https://nodejs.org/en/docs/guides/getting-started-guide
 
--v : -v [custom-name-of-mount]:[path-of-your-working-dir-in-your-container-from-Dockerfile]
+**Swyger Mailer v0.1** is a good api Server for:
+- SMTP Client: Sending mail
 
------IN PRODUCTION MODE--------------
-eg: -v my-custom-name:/working-path
 
-```
-cmd: docker run --name agglopy-auth -p 3500:80 -v agglopy-auth-v1.0:/home/server/auth/v1.0/agglopy_auth/ -d agglopy/auth:1.0
-```
-
-##About VPS
-Once you get a new VPS
-0. Let update packages
-```
-cmd: sudo apt update
-```
-
-1.First change your password:
-```
-cmd: passwd (hit enter)
-```
-then follow dialog
-
-2.Change your ssh port:
-```
-cmd: sudo nano /etc/ssh/sshd_config
-```
-in the file:
-```
-...
-#Port 22 (uncomment and change port)
-```
-then restart your vps
-```
-cmd: sudo reboot
-```
-
-##Make SFTP in your linux VPS
-Visit: https://www.fosslinux.com/39228/how-to-set-up-an-sftp-server-on-linux.htm
+### Setup ENV Variables
+Locate the <a href="https://github.com/coorise/swyger-nodejs-mailer/blob/master/.env.example">``.env.example``</a> file from the repo and create ``.env`` file at the root of your project:
 
-1.Go to ssh config
+- Configuration of the SMTP client
 ```
-cmd: sudo nano /etc/ssh/sshd_config
+MAIL_HOST="mail.agglomy.com"
+MAIL_SENDER=team@agglomy.com
+MAIL_PASS=
+MAIL_EXT=@agglomy.com
 ```
-then at the end of the file:
-```
-...
-Match group root 
-ChrootDirectory / 
-```
 
-then:
-```
-cmd: sudo systemctl restart ssh
-```
-2. Add/Update User and Group
+## @Without Docker
+### Requirements:
+- NodeJS v16 (https://nodejs.org/en/blog/release/v16.16.0)
+- Git: https://git-scm.com/downloads
 
-To add a group (should match with sshd_config file):
+### Install Dependencies
 ```
-cmd: sudo addgroup my_group
+git clone https://github.com/coorise/swyger-nodejs-mailer.git
+cd swyger-nodejs-mailer
+npm install
 ```
-then to add a new user to a group:
-```
-cmd: sudo useradd -m new_user -g my_group
-```
--m:means create user home with his name as directory  (/home/new_user),
-so he will have a permission 755 = rwxr-xr-x (owner-group-others)
+Note: Swyger Base server should also run on a different port, it is required if you will also use Swyger Mailer and Swyger Storage
+- Configuration of the Mailer Server
 
-then set him a new password:
-```
-cmd: sudo passwd new-user (hit enter and follow the screen dialog)
-```
-For an existing user
-```
-cmd: sudo usermod -a old_user -G my_group
-```
--a : means append , so it will add this to his existing list group else other groups will be deleted
+To generate token: ``npm run generate:key -- --secret yoursecret --with-env`` or generate it online, visit https://www.javainuse.com/jwtgenerator
 
-You can also give some folder priority:
 ```
-cmd: sudo chmod 700 /home/new_user/
----OR----
-cmd: sudo chmod -R 700 /home/new_user/
+NODE_ENV=development #or production
+AUTH_ADMIN_TOKEN=token 
+APP_VERSION=0.2
+HOST=0.0.0.0
+PORT=4100
 ```
--R= if you want sub-folders to have the same permissions as parent
 
--700: means full control [write,read,execute], so:
+### Create a custom API automatically
+It will create a file in ``./src/app/api_builder/typeorm``
 ```
-Owner: rwx = 4+2+1 = 7
-Group: r-x = 4+0+1 = 5
-Other: r-x = 4+0+1 = 5
+npm run swyger -- --create api --name nameOfApi
 ```
-You can visit: https://linuxize.com/post/umask-command-in-linux/
-
-List folders with their permissions:
+Note: You can see the file ``./src/app/services/api/builder/typeorm/cmd.js`` (Still in test)
 
+### Run In Development Mode
 ```
-cmd: ls -al
+npm run dev
 ```
-or mask
-```
-cmd: umask
->> eg : 0002
-```
-sometimes mask are hidden, then
-```
-cmd: sudo su
-cmd: umask
->> eg : 0022
-```
-
 
- Use ACL (to control user and folder permissions)
-```
-cmd: sudo apt install acl
-```
+### Run In Production Modes
 ```
-cmd: sudo setfacl -R -m user:rwx -d /your_dir
-cmd: sudo setfacl -R -m group:rwx -d /your_dir
+npm run build
+npm run prod
+# OR
+npm run start
 ```
--R = for recursive folder
--m = modify
+##  @With Docker
+### Requirements:
+- Docker(https://docs.docker.com/get-docker/) and docker-compose(https://docs.docker.com/compose/install/) in case you want to add it in container
+- Git: https://git-scm.com/downloads
 
-Change the owner of folder
-```
-cmd: sudo chown user  /your_dir
-cmd: sudo setfacl group /your_dir
-cmd: sudo setfacl user:group /your_dir
-```
+### Run In Docker
 
-Access to Super user mode:
+A ``Dockerfile`` and ``docker-compose.yaml`` are located at the root of your project
+- #### Pull Swyger Mailer Image
 ```
-cmd: sudo su
-cmd to quit: exit
+docker pull coorise/swyger-nodejs-mailer:0.1
 ```
-
-
-###Explore SFTP files with Windows
-Download ``WinFsp``: https://github.com/winfsp/winfsp/releases
-Download ``SSHF-Win``: https://github.com/winfsp/sshfs-win/releases
-
-About root directory:https://github.com/winfsp/sshfs-win/issues/12
-
--Right-click on ``This PC`` , then ``Map Network drive``
-in the field: ``\\sshfs\user@host!port\..\..``  ( '..\..\' means location should start at the root folder)
-
-
-
-###About Git
-
-Configure a global Environment
-Your name:
-
+--OR--------
+- #### Build Your Own Local Image
 ```
-cmd: git config --global user.name "Sobgui"
+git clone https://github.com/coorise/swyger-nodejs-mailer.git
+cd swyger-nodejs-mailer
+docker build -t coorise/swyger-nodejs-mailer:0.1 .
 ```
-Your emai:
+Note: The working docker directory will be in ``/home/server/swyger/mailer/``
+- #### Run Image In Container with Docker
 ```
-cmd: git config --global user.email "username@gmail.com"
+docker run --name swyger_mailer -p 4100:4100 --expose=4100 --add-host=host.docker.internal:host-gateway coorise/swyger-nodejs-mailer:0.1
 ```
-To generate key and set where to save it:
+Note: In case you want to create a volume:
 ```
-cmd: ssh-keygen -o -t rsa -C "username@gmail.com"
+cmd (Windows) : docker run  --name swyger_mailer -p 4100:4100 -v ${pwd}:/home/server/swyger/mailer/ -v "$(pwd)"/node_modules:/home/server/swyger/mailer/node_modules -d swyger/mailer:0.1
+cmd (Linux) : sudo docker run --name swyger_mailer -p 4100:4100  -v "$(pwd)":/home/server/swyger/mailer/ -v "$(pwd)"/node_modules:/home/server/swyger/mailer/node_modules --add-host=host.docker.internal:host-gateway swyger/mailer:0.1
 ```
-
-
-Clone your repository with ssh key:
-
-
+- #### Run Image In Container with Docker-Compose
 ```
-cmd: git clone ssh://git@146.59.229.245:222/Sobgui/agglomy-backend.git (In case you didn't set the default directory of your key , it is savde in default : user/.ssh/)
-
-cmd: git -c core.sshCommand="ssh -i agglomy" clone ssh://git@146.59.229.245:222/Sobgui/agglomy-backend.git (With your custom path for your private key)
-
+docker-compose up -d
 ```
 
-### SSL Certificate with Docker (NGINX - Lets-Encrypt)
-visit: https://www.programonaut.com/setup-ssl-with-docker-nginx-and-lets-encrypt/
+## @API Use Case 
+You can use http request like <a href="https://www.npmjs.com/package/axios">Axios</a>. <br>
+You set your server host: http://localhost:4200/api/v1/mails/send-one <br>
+You also have to add in ``header``: Access-Key:"Token" <br>
+The request should be ``multipart form``  with this minimum field:
+```
+    "from": "user1@agglomy.com",
+    "to": "user2@agglomy.com"v,
+    "subject": "Swyger subject"
+    "html": "<div>Some fancy message</div>
+    "attachements":[file1,file2,...]
+```
+Note to get doc, just run the project on development, then visit: http://localhost:4200/api-docs
+
+# Some References
+- TypeOrm: https://typeorm.io/
+- DotEnv: https://www.npmjs.com/package/dotenv
+- Acebase Client: https://www.npmjs.com/package/acebase-client
+- SocketIo: https://www.npmjs.com/package/socket.io
+- Glob: https://www.npmjs.com/package/glob
+- Json Joi Converter: https://www.npmjs.com/package/json-joi-converter
+- Node Json DB: https://www.npmjs.com/package/node-json-db
+
+# Issues
+- some bugs still remain
+- Swagger UI v4.1.3 only is compatible with Docker Container (due to cors)
+# Todo
+- Removing/Reduce some unusual dependencies,functions, refactoring paths/files...
+- Making good and easy documentation with tutorials (videos, webpage...)
+- Code Cleaning/ Making a suitable project structure with modulable pattern
+
+# Join US
+If you have any suggestion, feature to add ...etc
+- Discord(Support Team, FAQ, Chat): https://discord.gg/PPTZY5qFdC
+
+# Contributors
+- Agglomy Team :
+ - Ivan Joel Sobgui
+# Licence
+
+MIT: You can use it for educational/personal/business purpose!
 
-```
-cmd: docker run --name nginx -p 80:80 -p 443:443 -v "$(pwd)"/certificate/nginx/nginx.conf:/etc/nginx/nginx.conf nginx:1.15-alpine
-```
 
-### Node for production
-To not install the dev package, just type:
-```
-cmd: npm prune install
-cmd: npm prune --production
-```

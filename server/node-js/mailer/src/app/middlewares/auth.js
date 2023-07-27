@@ -5,7 +5,7 @@ import axios from "axios";
 import HTTP_RESPONSE_CODE from "../helpers/all-http-response-code";
 import SocketResponse from "../helpers/response-socket";
 import getDataFromRequest from "../helpers/extract-data";
-import ALL_DATA_CODE from "../helpers/all-data-code";
+import ALL_DATA_CODE from "../helpers/all-mailer-code";
 
 export default class AuthService {
 

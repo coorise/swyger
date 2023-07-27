@@ -37,3 +37,13 @@ jobs:
           push: true
           tags: coorise/swyger-nodejs-base:0.1.0 , coorise/swyger-nodejs-base:latest
           labels: coorise/swyger-nodejs-base
+      #Readme: https://docs.docker.com/build/ci/github-actions/update-dockerhub-desc/
+      - name: Add README file for coorise/swyger-nodejs-base
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: coorise/swyger-nodejs-base
+          readme-filepath: ./README.md
+          #short-description: Swyger Base
+          short-description: ${{ github.event.repository.description }}

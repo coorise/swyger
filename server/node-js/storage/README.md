@@ -1,25 +1,17 @@
 ## Server: Swyger Storage with NodeJS
 
-
-Visit master branch: https://github.com/coorise/swyger-nodejs-storage.git
+Visit the master branch: https://github.com/coorise/swyger-nodejs-storage.git
 
 
 Note: You must know how to use NodeJS: https://nodejs.org/en/docs/guides/getting-started-guide
 
 **Swyger Storage v0.1** is a good api Server for:
-- CRUD on file: Create/Read/Update/Delete in realtime
+- CRUD: Create/Read/Update/Delete file
+- Realtime Event: on value/create/delete/update
 
-### Requirements:
-- NodeJS v16 (https://nodejs.org/en/blog/release/v16.16.0)
-- Database Server: MongoDB(https://www.mongodb.com/try/download/community) / MySQL(https://dev.mysql.com/downloads/mysql/) /...etc
-- Docker(https://www.docker.com/products/docker-desktop/) and docker-compose(https://docs.docker.com/compose/install/) in case you want to add it in container
 
-### Install Dependencies
-```
-npm install
-```
 ### Setup ENV Variables
-Locate the ``.env`` file or create it at the root of your project:
+Locate the <a href="https://github.com/coorise/swyger-nodejs-storage/blob/master/.env.example">``.env.example``</a> file from the repo and create ``.env`` file at the root of your project:
 
 - Configuration of MongoDB
 ```
@@ -29,7 +21,8 @@ DB_PORT=27017
 DB_USERNAME=root
 DB_PASSWORD=
 ```
-Note: If you want to add more storages (MySQL, etc...) go in ``./src/app/config/storage/typeorm/typeorm.db-list.js``
+
+Note: If you want to add more storages (MySQL, etc...), clone the repo then go in ``./src/app/config/storage/typeorm/typeorm.db-list.js``
 And you also have to set your drive read/write ``./src/app/config/storage/typeorm/data.drive-manager.js``
 - Configuration of Swyger Base
 ```
@@ -40,8 +33,20 @@ ACE_ENABLE_HTTPS=false
 ACE_USER=admin
 ACE_PASS=SwygerBase@123
 ```
-Note: Swyger Base server should also run on a different port, it is required!
-- Configuration of the Auth Server
+## @Without Docker
+### Requirements:
+- NodeJS v16 (https://nodejs.org/en/blog/release/v16.16.0)
+- Storage Server: MongoDB(https://www.mongodb.com/try/download/community) / MySQL(https://dev.mysql.com/downloads/mysql/) /...etc
+- Git: https://git-scm.com/downloads
+
+### Install Dependencies
+```
+git clone https://github.com/coorise/swyger-nodejs-storage.git
+cd swyger-nodejs-storage
+npm install
+```
+Note: Swyger Base server should also run on a different port, it is required if you will also use Swyger Storage and Swyger Storage
+- Configuration of the Storage Server
 
 To generate token: ``npm run generate:key -- --secret yoursecret --with-env`` or generate it online, visit https://www.javainuse.com/jwtgenerator
 
@@ -50,10 +55,7 @@ NODE_ENV=development #or production
 AUTH_ADMIN_TOKEN=token 
 APP_VERSION=0.2
 HOST=0.0.0.0
-PORT=4500
-#Free Storage with Discord
-DISCORD_BOT_TOKEN=
-DISCORD_CHANNEL_ID=
+PORT=4100
 ```
 
 ### Create a custom API automatically
@@ -68,24 +70,36 @@ Note: You can see the file ``./src/app/services/api/builder/typeorm/cmd.js`` (St
 npm run dev
 ```
 
-### Run In Production Mode
+### Run In Production Modes
 ```
 npm run build
 npm run prod
 # OR
 npm run start
 ```
+##  @With Docker
+### Requirements:
+- Docker(https://docs.docker.com/get-docker/) and docker-compose(https://docs.docker.com/compose/install/) in case you want to add it in container
+- Git: https://git-scm.com/downloads
+
 ### Run In Docker
 
 A ``Dockerfile`` and ``docker-compose.yaml`` are located at the root of your project
-- #### Build Image
+- #### Pull Swyger Storage Image
 ```
-docker build -t swyger/storage:0.1 .
+docker pull coorise/swyger-nodejs-storage:0.1
+```
+--OR--------
+- #### Build Your Own Local Image
+```
+git clone https://github.com/coorise/swyger-nodejs-storage.git
+cd swyger-nodejs-storage
+docker build -t coorise/swyger-nodejs-storage:0.1 .
 ```
 Note: The working docker directory will be in ``/home/server/swyger/storage/``
 - #### Run Image In Container with Docker
 ```
-docker run --name swyger_storage -p 4100:4100 --expose=4100 --add-host=host.docker.internal:host-gateway swyger/storage:0.1
+docker run --name swyger_storage -p 4100:4100 --expose=4100 --add-host=host.docker.internal:host-gateway coorise/swyger-nodejs-storage:0.1
 ```
 Note: In case you want to create a volume:
 ```
@@ -108,13 +122,11 @@ docker-compose up -d
 
 # Issues
 - some bugs still remain
-- Swagger UI v4.1.3 only, compatible with Docker Container (due to cors)
-
+- Swagger UI v4.1.3 only is compatible with Docker Container (due to cors)
 # Todo
 - Removing/Reduce some unusual dependencies,functions, refactoring paths/files...
 - Making good and easy documentation with tutorials (videos, webpage...)
 - Code Cleaning/ Making a suitable project structure with modulable pattern
-- Adding AWS and Google Storage
 
 # Join US
 If you have any suggestion, feature to add ...etc
@@ -122,7 +134,7 @@ If you have any suggestion, feature to add ...etc
 
 # Contributors
 - Agglomy Team :
-    - Ivan Joel Sobgui
+  - Ivan Joel Sobgui
 # Licence
 
 MIT: You can use it for educational/personal/business purpose!
