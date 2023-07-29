@@ -8,9 +8,10 @@ export default class AccessService{
         let result={}
         let token = req.headers?.['access-key']
         try {
-            if(await jwt.verify(token)){
+            let isVerified=await jwt.verify(token)
+            if(isVerified){
                 result={
-                    data:await jwt.verify(token)
+                    data:isVerified
                 }
             }
         }catch (e) {

@@ -22,11 +22,12 @@ export default class AuthService {
 
 
         let token = req.headers?.authorization?.replace('Bearer ','')
-        //console.log('get token: ',token)
+        //console.log('get bearer token: ',token)
         try {
-            if(await jwt.verify(token)){
+            let isVerified=await jwt.verify(token)
+            if(isVerified){
                 result={
-                    data:await jwt.verify(token)
+                    data:isVerified
                 }
             }
         }catch (e) {
