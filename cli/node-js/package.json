@@ -1,9 +1,10 @@
 {
   "name": "@swyger/cli",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Swyger CLI is used to create projects(Server/Client) with boilerplate!",
   "type": "module",
   "main": "bin/index.js",
+  "repository": "https://github.com/coorise/swyger-nodejs-cli",
   "publishConfig": {
     "ignore": [
       ".git/",
@@ -15,7 +16,7 @@
     ]
   },
   "bin": {
-    "swyger-cli": "./bin/index.js"
+    "swyger": "./bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

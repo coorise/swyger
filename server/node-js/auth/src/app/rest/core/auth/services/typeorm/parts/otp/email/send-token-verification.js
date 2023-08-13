@@ -73,19 +73,24 @@ const sendTokenVerification = async (entities,data,option,refreshToken) => {
         <br>
         Visit our website: <b><a href="https://agglomy.com">agglomy.com</a></b>
         </div>`
+
         let data={
             from:process.env.NO_REPLY_EMAIL,
             to:user.email,
             subject:'New device token & verification for '+user.email,
             text:text,
-            html:html
+            html:html,
+            config:JSON.stringify({
+                auth:{
+                    user:process.env.NO_REPLY_EMAIL,
+                    pass:process.env.NO_REPLY_PASS
+                }
+            })
         }
         const mailService =await sendMailMessage(
             {
                 url:option.url,
-                data:{
-                    data
-                },
+                data,
                 headers: {
                     //"Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${option.token}`,
@@ -93,6 +98,7 @@ const sendTokenVerification = async (entities,data,option,refreshToken) => {
                 }
             }
         )
+
         if(mode==='development'){
             console.log('Mail sent for new device verification: ',data)
         }

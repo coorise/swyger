@@ -76,11 +76,10 @@ class ModuleApp {
 
         //app.set('trust proxy', 1); // trust first proxy
         app.set('trust proxy', true);
+        //app.options('*', cors())
 
         // Security
-        if(process.env?.NODE_ENV!=='development'){
-            app.use(helmet());
-            /*app.use(function(req, res, next) {
+        /*app.use(function(req, res, next) {
               res.header("Access-Control-Allow-Origin", "*");
               res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -95,8 +94,7 @@ class ModuleApp {
               next();
 
             });*/
-            app.use(cors());
-        }
+        app.use(cors());
 
         // compression
         app.use(compression());

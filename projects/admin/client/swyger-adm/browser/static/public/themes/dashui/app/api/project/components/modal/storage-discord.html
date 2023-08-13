@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade gd-example-modal-xl" id="discordModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Storage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Validation Form -->
+        <label for="selectStorageOption" class="form-label">Select Your Default Storage:</label>
+        <select v-model="storageOption" id="selectStorageOption" class="form-control">
+          <option value="" >Select Your Storage</option>
+          <option value="local" >Local Storage</option>
+          <option value="discord">Discord Storage</option>
+<!--          <option value="aws">AWS S3</option>
+          <option value="google">Google Firebase Storage</option>-->
+        </select>
+
+        <div v-if="storageOption==='discord'" class="row mt-2 g-3 needs-validation">
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Bot Token:</label>
+            <input v-model="storageConfig.discord.token" type="text" class="form-control" id="validationCustom01" value="hjhjhhhhvvgvgg" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Channel Id:</label>
+            <input v-model="storageConfig.discord.channelId" type="text" class="form-control" id="validationCustom02" value="jnjnjnnnjnjnj" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

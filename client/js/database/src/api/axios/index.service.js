@@ -15,10 +15,6 @@ const AxiosService={
       if(accessToken) headers['Authorization']='Bearer '+accessToken
       const url=path
 
-      if(typeof data?.get=='function' && data?.get('file')){
-        //https://stackoverflow.com/questions/43013858/how-to-post-a-file-from-a-form-with-axios
-        headers['Content-Type']='multipart/form-data'
-      }
       if(args?.headers){
         headers=Object.assign(
             ...headers,
@@ -41,6 +37,8 @@ const AxiosService={
       try {
         const result  =await axios(config)
         resp.data=result?.data?.data || result?.data
+        if(result?.error)
+          resp.error=result.error
         if(!resp.data) resp.data={}
       }catch (e) {
         resp.error=e.response?.data?.error || e.response?.error

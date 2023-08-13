@@ -1,0 +1,15 @@
+.scroll_theme_parent::-webkit-scrollbar{
+  width: 10px;
+
+}
+.scroll_theme_parent::-webkit-scrollbar-track{
+  width: 10px;
+
+
+}
+.scroll_theme_parent::-webkit-scrollbar-thumb{
+  width: 10px;
+  background: gray;
+  border-radius: 10px;
+
+}

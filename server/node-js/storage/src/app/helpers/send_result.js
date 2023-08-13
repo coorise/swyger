@@ -96,6 +96,7 @@ let sendResult=async (service,option,req,res,next)=>{
                     .then(result => {
                         //console.log(`Signed out!`);
                     }).catch(e=>{})
+                req.extrasPath=null
 
                 if(result?.error){
                     response.error={}
@@ -230,14 +231,13 @@ let sendResultWithError=async (service,option,req,res,next)=>{
                     .then(result => {
                         //console.log(`Signed out!`);
                     }).catch(e=>{})
+                req.extrasPath=null
 
                 let error
                 if(result?.error) error={storage:result?.error}
                 if(result?.data || result?.error){
-                    response.data={
-                        data:result.data,
-                        error
-                    }
+                    response.data=result.data
+                    response.error=error
                     if(socket){
                         //console.log('req.io.id ', req.id)
                         //if(!result?.error)

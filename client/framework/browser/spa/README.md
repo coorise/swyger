@@ -54,6 +54,23 @@ Please keep the following **Folder Structure** so that `Vite JS` will build it w
 Note: You can modify everything according to your need from scratch (dir,path,files...ect), just be careful of
 what you are doing when modifying those files :)
 
+## Swyger Route
+We also have integrated swyger route,<br>
+check ``src/route.js`` and to use the api client, check some examples  <br>
+on: ``src/app/rest/api/name_of-api/controllers/pages/name_of_controller``<br>
+```
+const {req,controller}=args;
+  //console.log('path : ', req.path)
+  //console.log('query : ', req.query)
+  //console.log('param : ', req.param)
+  const router=req.$router
+  //router?.go('/')
+  //router.back('path')
+  //router.mount('path',function)
+  //router.off('path')
+  //router.reload()
+```
+
 ## Important:
 for your static and dynamic import like (**href,src, import,...etc**)
 
@@ -104,7 +121,7 @@ There is two methods for build:
 
 For production environment:
 
-``npm run build && npm run start
+``npm run start
 ``
 
 ## `Attention!`

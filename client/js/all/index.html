@@ -21,9 +21,6 @@
         (async ()=>{
             let SwygerClient= (await import('./src/index.js')).default
             let config={
-                //Configure the ENV
-                ENV:'dev',
-
                 //Configure the offline DB
                 OFFLINE_DB_NAME:{
                     AUTH:'swyger_auth',
@@ -42,8 +39,10 @@
                     DATABASE:'/api/v1',
                     STORAGE:'/api/v1',
                 },
+                AUTO_REFRESH_TOKEN_TIMEOUT:1500000, //in millisecond= 25 minutes
                 // A Unique Api key for all your servers
-                API_KEY:'your_api_key'
+                //API_KEY:'api_key'
+                API_KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3IiOiJzd3lnZXIiLCJpYXQiOjE2OTA1MDY0MDl9.eRkSLw7wqeZ1Wzp1oh2aqV94ucl98y1gdc9_rCZNCSk'
             }
             let client= SwygerClient.init(config)
             //Authentication

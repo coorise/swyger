@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="/public/assets/css/grid-list-1.css">
+<!-- Container fluid -->
+<div class="bg-primary rounded pt-10 pb-21"></div>
+<div class="container-fluid mt-n22 px-6">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-12">
+      <!-- Page header -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="mb-2 mb-lg-0">
+          <a href="/"><h3 class="mb-0  text-white">Agglomy</h3></a>
+        </div>
+        <div>
+          <a href="/setting" class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+            <i class="bi bi-menu-app fs-4"></i>
+          </a>
+          <div data-bs-toggle="modal" data-bs-target="#exampleModalScrollable" class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2 position-relative">
+            <i class="bi bi-bell fs-4"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                99+
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <a href="/project/create" class="btn btn-white">Create New Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- row  -->
+  <div class="row mt-6">
+    <div class="col-md-12 col-12 p-0">
+      <!-- card  -->
+      <div class="card">
+        <!-- card header  -->
+        <div class="d-flex flex-row flex-wrap align-items-center card-header bg-white  py-4">
+          <h4 class="mb-0">All Projects</h4>
+          <form class="d-flex align-items-center ms-2">
+            <input type="search" class="form-control" placeholder="name">
+          </form>
+          <div class="btn-group ms-2">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Start at:</a>
+              <a class="dropdown-item" href="#">Take:</a>
+              <a class="dropdown-item" href="#">Filter:Date (recent,last month...)</a>
+              <a class="dropdown-item" href="#">Filter:Comparison(<,>,!=,<=)</a>
+              <a class="dropdown-item" href="#">Filter:Condition(Or/And)</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-primary" href="#">Search</a>
+            </div>
+          </div>
+        </div>
+        <!-- table  -->
+        <div class="table-responsive">
+          <div class="main-container">
+            <ul  class="grid-wrapper">
+              <div v-for="project of projects">
+                <li>
+                  <div class="card" >
+                    <img src="./assets/images/placeholder/placeholder-4by3.svg" class="card-img-top" alt="">
+                    <div class="card-body  mb-0 pb-0">
+                      <h5 class="d-flex justify-content-between flex-row align-items-center card-title">
+                        <b>{{project.name}}</b>
+                        <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                          <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                          <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                          <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                        </div>
+                        <div class="btn-group ms-2 float-end">
+                          <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item text-success" href="#">Activated</a>
+                            <a class="dropdown-item" href="#">Detail</a>
+                            <a class="dropdown-item" href="#">Change Owner</a>
+                            <div class="dropdown-divider"></div>
+                            <a @click="deleteProject(project.uid)" class="dropdown-item text-danger" >Delete</a>
+                          </div>
+                        </div>
+                      </h5>
+                      <div class="col">
+                        <p class="card-text">{{project.description}}...</p>
+                        <div>
+                          Owner: {{project.owner}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                      <a :href="'/projects/'+project.uid+'/detail'" class="btn btn-light-primary">View</a>
+                    </div>
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <!-- card footer  -->
+        <div class="card-footer bg-white text-center">
+          <a href="#" class="link-primary">page1/2  prev  next</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

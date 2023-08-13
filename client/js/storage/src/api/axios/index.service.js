@@ -41,6 +41,8 @@ const AxiosService={
       try {
         const result  =await axios(config)
         resp.data=result?.data?.data || result?.data
+        if(result?.error)
+          resp.error=result.error
         if(!resp.data) resp.data={}
       }catch (e) {
         resp.error=e.response?.data?.error || e.response?.error

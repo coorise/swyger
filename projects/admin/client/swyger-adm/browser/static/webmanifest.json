@@ -1,0 +1,43 @@
+{
+  "short_name": "Agglomy",
+  "name": "Agglomy: Build Soft Projects",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+
+  ],
+  "id": "/",
+  "start_url": "/",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "shortcuts": [
+    {
+      "name": "How to create account?",
+      "short_name": "Create Account",
+      "description": "Here learn how to create Account",
+      "url": "/today?source=pwa",
+      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+    }
+
+  ],
+  "description": "Agglomy best team for dev!",
+  "screenshots": [
+    {
+      "src": "/web-screenshot.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+
+  ]
+}

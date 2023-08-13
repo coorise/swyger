@@ -61,8 +61,8 @@ database
 //Or with socket listener
  database
         .ref('/storage/projects/aminuty/')
-        .on()
-        .onValue((res)=>{ //OR choose your listener: .create((res)) //OR .get((res)) ...etc
+        //.on() //choose your listener: .create((res)) //OR .get((res)) ...etc
+        .onValue((res)=>{ //Will listen all events (create,update,delete)
           console.log('data listener: ',res.value)
         })
 ```

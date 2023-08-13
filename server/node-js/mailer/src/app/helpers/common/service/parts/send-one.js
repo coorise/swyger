@@ -55,10 +55,20 @@ const sendOne =async (request)=>{
     if(envelope?.bcc)
       compose.bcc=envelope?.bcc
 
+    let config
+    if(typeof envelope?.config=='object'){
+      config=envelope?.config
+    }else if(typeof envelope?.config=='string'){
+      try{
+        config=JSON.parse(envelope?.config)
+      }catch (e) {
+
+      }
+    }
     const resp=await request?.sendMail({
       ...compose,
       ...template
-    },envelope?.config)
+    },config)
     //console.log('response mail, ',resp)
     if(resp?.error){
       error.errors=resp.error

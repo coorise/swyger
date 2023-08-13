@@ -1,0 +1,50 @@
+<!-- Card -->
+<div class="card smooth-shadow-md">
+  <!-- Card body -->
+  <div class="card-body p-6">
+    <div class="mb-4">
+      <a href="/"><img src="./assets/images/brand/logo/logo-primary.svg" class="mb-2" alt=""></a>
+      <p class="mb-6" style="color: green">{{ message }}</p>
+      <p class="mb-6" style="color: red">Please enter your code sent from your mail.</p>
+    </div>
+    <!-- Form -->
+    <form @keypress.enter="verifyCode">
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <span style="color: red">{{error.email}}</span>
+        <input v-model="user.email" type="email" id="email" class="form-control" name="email" v-placeholder="user.email" required="" disabled>
+      </div>
+      <!-- Password -->
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Code</label>
+        <span style="color: red">{{error.code}} {{error.code_length}}</span>
+        <input v-model="user.code" type="password" id="password" class="form-control" name="password" placeholder="**************" required="">
+      </div>
+      <div>
+        <!-- Button -->
+        <div class="d-grid">
+          <span style="color: red">{{clientError}}</span>
+          <div @click="verifyCode"  class="btn btn-primary">Verify Code</div>
+        </div>
+        <div v-if="page!='verify-email'">
+          <div class="d-md-flex justify-content-between mt-4">
+            <div class="mb-2 mb-md-0">
+              <a href="/register" class="fs-5">Create An
+                Account </a>
+            </div>
+            <div>
+              <a href="/forgot-password" class="text-inherit
+                        fs-5">Forgot your password?</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </form>
+  </div>
+</div>

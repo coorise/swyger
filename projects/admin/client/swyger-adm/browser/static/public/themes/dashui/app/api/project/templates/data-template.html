@@ -1,0 +1,59 @@
+<template id="data-template">
+  <ul>
+    <div v-for="key of Object.keys(obj)">
+      <li v-if="typeof obj[key]=='object'">
+        <!--<input type="checkbox" checked="checked" id="c2" />-->
+        <div class="d-flex flex-row align-items-center" style="height: 0.3%">
+          <input type="checkbox"  id="c2" />
+          <label for="c2" class="tree_label position-relative">
+            <div @click="onObjClicked(key)" class="input-group flex-nowrap" >
+              <span class="input-group-text p-1" id="inputGroupPrepend">/{{ key }}</span>
+              <input style="width: 4em" placeholder="0:20" type="text" class="form-control rounded-end form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback">
+                Please set the begin_at : take
+              </div>
+            </div>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            2
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+          </label>
+          <div class="btn-group ms-1">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Add Child</a>
+              <a class="dropdown-item" href="#">Add Same Level</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-danger" href="#">Delete</a>
+            </div>
+          </div>
+        </div>
+        <div v-if="objClicked[key]" v-scope="DataComponent({data:obj[key]})"></div>
+      </li>
+      <li v-else class="d-flex flex-row align-items-center">
+        <span class="border border-dark rounded tree_label p-1">/{{ key }}</span>
+        <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
+        <div class="ms-1"> "{{obj[key]}}"</div>
+        <div class="btn-group ms-1">
+          <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-danger" href="#">Delete</a>
+          </div>
+        </div>
+      </li>
+    </div>
+
+    <li>
+      <div class="d-flex flex-row align-items-center">
+        <input type="checkbox"  id="c1" />
+        <label class="tree_label card  rounded p-2 position-relative" for="c1">
+          ...
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            22
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+        </label>
+      </div>
+    </li>
+  </ul>
+</template>

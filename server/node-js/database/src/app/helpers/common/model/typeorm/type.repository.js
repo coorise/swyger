@@ -13,9 +13,9 @@ export default class TypeRepository {
             repositorySQL:async (name) =>{
                 //console.log('Get repository ',entities[entityName+'MySQL'])
                 const repo={}
-                const db=await getConnection(name)?.getRepository(entities[entityName+'MySQL'])
-                const model=entities[entityName+'MySQL']?.options?.target
                 try {
+                    const db=await getConnection(name)?.getRepository(entities[entityName+'MySQL'])
+                    const model=entities[entityName+'MySQL']?.options?.target
                     repo.db=db
                     repo.model=model
                 }catch (e) {
@@ -26,9 +26,10 @@ export default class TypeRepository {
             repositoryMongo:async (name)=>{
                 //console.log('Get repository ',entities[entityName+'MongoDB'])
                 const repo={}
-                const db=await getConnection(name)?.getRepository(entities[entityName+'MongoDB'])
-                const model=entities[entityName+'MongoDB']?.options?.target
+
                 try {
+                    const db=await getConnection(name)?.getRepository(entities[entityName+'MongoDB'])
+                    const model=entities[entityName+'MongoDB']?.options?.target
                     repo.db=db
                     repo.model=model
                 }catch (e) {

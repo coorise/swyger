@@ -1,10 +1,11 @@
 {
   "name": "@swyger/client-database",
-  "version": "0.1.1",
+  "version": "0.1.7",
   "description": "Swyger Database Client JS library is used for Swyger Server as consumer Rest API for CRUD operation in realtime! Visit the master branch: https://github.com/coorise/swyger-js-client-database.git",
   "type": "module",
   "main": "dist/swyger-client-database.min.js",
-  "module": "./src/index.js",
+  "jsdelivr": "dist/swyger-client-database.min.js",
+  "unpkg": "dist/swyger-client-database.min.js",
   "publishConfig": {
     "ignore": [
       ".git/",
@@ -25,7 +26,9 @@
     "build": "cross-env NODE_ENV=prod BUILD_MODE=bundle-minify  node ./replace-src.js && vite build -- --minify --bundle",
     "build:dev": "cross-env NODE_ENV=dev node  ./replace-src.js && vite build",
     "build:bundle": "cross-env NODE_ENV=dev BUILD_MODE=bundle  node ./replace-src.js && vite build -- --bundle",
-    "start": "vite preview"
+    "start": "npm run build && vite preview",
+    "start:dev": "npm run build:dev && vite preview",
+    "start:bundle": "npm run build:bundle && vite preview"
   },
   "keywords": [
     "Client",
@@ -52,6 +55,9 @@
   ],
   "author": "Agglomy",
   "license": "MIT",
+  "contributors": [
+    "Ivan Joel Sobgui"
+  ],
   "dependencies": {
     "acebase": "1.29.0",
     "axios": "^1.4.0",

@@ -9,17 +9,9 @@ import {authRoute, crudRoute, databaseRoute, listenRoute} from './api-route.js'
 class SwygerClient{
   #listen='/on'
   #requireAuth=true
-
   #redirectTo
-
   #extrasRef
-
-  #storage
-  #basePath
-  #storageConfig
-  #mail
   #eventEmitter=new EventEmitter()
-
   #syncWithLocal
   #dataBaseConnected
   #config
@@ -117,70 +109,6 @@ class SwygerClient{
 
       let request={}
       if(data && Object.keys(data).length>0) request.data=data
-      if(this.#storage){
-        request.storage=this.#storage
-        request.config=this.#storageConfig
-      }
-      if(this.#mail){
-        let formData=new FormData()
-        if(Array.isArray(data)){
-          data.map((elt,i)=>{
-            if(typeof elt=='object'){
-              elt.attachmentName='attachment'+i
-              elt?.attachments.forEach((file)=>{
-                if(file?.data){
-                  formData.append('attachments'+i,file?.data,file?.name)
-                }else {
-                  formData.append('attachments'+i,file)
-                }
-              })
-            }
-          })
-          formData.append('field',JSON.stringify(request))
-        }else {
-          if(Array.isArray(data?.attachments)){
-            data?.attachments.forEach((file)=>{
-              if(file?.data){
-                formData.append('attachments',file?.data,file?.name)
-              }else {
-                formData.append('attachments',file)
-              }
-            })
-            delete request.data.attachments
-            formData.append('field',JSON.stringify(request))
-          }
-        }
-        request=formData
-      }else
-      if( this.#storage && data?.file) {
-        //visit: https://developer.mozilla.org/en-US/docs/Web/API/FormData
-        //visit: https://stackabuse.com/axios-multipart-form-data-sending-file-through-a-form-with-javascript/
-        let formData=new FormData()
-        if(data?.file){
-          if(data.file?.data){
-            formData.append('file',data.file?.data,data.file?.name)
-          }else {
-            formData.append('file',data.file)
-          }
-          delete request.data.file
-          formData.append('field',JSON.stringify(request))
-          //console.log('get form data, ',formData.get('file'))
-        }else if(Array.isArray(data?.directory)){
-          data?.directory.forEach((file)=>{
-            if(file?.data){
-              formData.append('file',file?.data,file?.name)
-            }else {
-              formData.append('file',file)
-            }
-          })
-          delete request.data.directory
-          formData.append('field',JSON.stringify(request))
-          request=formData
-        }
-        request=formData
-
-      }
-
 
       return request
     }
@@ -692,9 +620,7 @@ class SwygerClient{
     }
     let event=(path,socket)=>{
       let ref='%'+path
-      let parent=this.init(req)
-      delete parent.auth().login
-      delete parent.auth().register
+      let parent=this.init(req)?.database()
       return {
         private:(id=generateQuickGuid())=>{
           return parent.event(path + id)
@@ -702,40 +628,69 @@ class SwygerClient{
         child:(childPath)=>{
           return parent.event(path + childPath)
         },
-        emit:(data,callback)=>{
+        push:(data,callback)=>{
+          let event=parent.event(path)
           socket?.emit(ref,data)
-          if(typeof callback=='function') parent.event(path).do(callback)
+          if(typeof callback=='function') event?.onValue(callback)
           return {
-            ...parent.event(path),
+            ...event,
             ...parent
           }
         },
-        do:(callback)=>{
+        onCreate:(callback)=>{
+          let event=parent.event(path+'/create')
+          if(typeof callback=='function') event?.onValue(callback)
+          return {
+            ...event,
+            ...parent
+          }
+        },
+        onUpdate:(callback)=>{
+          let event=parent.event(path+'/update')
+          if(typeof callback=='function') event?.onValue(callback)
+          return {
+            ...event,
+            ...parent
+          }
+        },
+        onDelete:(callback)=>{
+          let event=parent.event(path+'/delete')
+          if(typeof callback=='function') event?.onValue(callback)
+          return {
+            ...event,
+            ...parent
+          }
+        },
+        onValue:(callback)=>{
+          let event=parent.event(path)
           socket?.on(ref,(result)=>{
             if(typeof callback=='function')
               callback({
-                ...parent.event(path),
+                ...event,
                 ...parent,
                 value:result
               })
           })
           return {
-            ...parent.event(path),
+            ...event,
             ...parent
           }
         },
-        onAny:(callback)=>{
+        onAnyValue:(callback)=>{
           socket?.onAny((eventName,args)=>{
-
+            let event=parent.event(eventName)
             if(typeof callback =='function') callback(
               eventName,
               {
                 value:args,
-                ...parent.event(eventName),
+                ...event,
                 ...parent
               }
             )
           })
+          return {
+            ...parent
+          }
         }
       }
     }
@@ -1051,13 +1006,7 @@ class SwygerClient{
               //do online request
               let {data, onRequest, callback} = extractArgs(args)
               let customPath = crudRoute.create.one
-              if (this.#storage) {
-                if (data?.file || data?.directory) {
-                  return parent.ref(path)?.upload(data, null, callback)
-                } else {
-                  if (Array.isArray(data.folders)) customPath = crudRoute.create.many
-                }
-              } else if (Array?.isArray(data)) {
+              if (Array?.isArray(data)) {
                 customPath = crudRoute.create.many
               }
               return dataRequest('post', ref + customPath, data, onRequest, node, callback)
@@ -1069,25 +1018,19 @@ class SwygerClient{
             if (parent.auth().$currentUserId && config?.host === HOST_SERVER?.DATABASE && this.#syncWithLocal && !this.#dataBaseConnected) {
               //save data when offline to transaction and database locally, then do background process
               // when online to send data and erase previous transaction
-              if (ENV === 'dev') console.log('Find: We are offline')
+              //if (ENV === 'dev') console.log('Find: We are offline')
 
               return parent.local()?.database()?.ref(path)?.find(...args)
             } else {
               //do online request
-              if (ENV === 'dev') console.log('Find: We are online')
+              //if (ENV === 'dev') console.log('Find: We are online')
               let node = {
                 ...parent.ref(path, config, socket),
                 ...parent
               }
               let {data, onRequest, callback} = extractArgs(args)
               let customPath = crudRoute.find.one
-              if (this.#storage) {
-                if (Array.isArray(data?.files) || Array.isArray(data?.folders)) {
-                  if (Array.isArray(data?.files)) data.isFolder = false
-                  if (Array.isArray(data?.folders)) data.isFolder = true
-                  customPath = crudRoute.find.many
-                }
-              } else if (Object.keys(data)?.length <= 0 || data.order || data.where || data.$option || data.skip || data.take) {
+              if (Object.keys(data)?.length <= 0 || data.order || data.where || data.$option || data.skip || data.take) {
                 customPath = crudRoute.find.many
               }
               return dataRequest('post', ref + customPath, data, onRequest, node, callback)
@@ -1108,14 +1051,7 @@ class SwygerClient{
               }
               let {data, onRequest, callback} = extractArgs(args)
               let customPath = crudRoute.get.one
-              if (this.#storage) {
-                if (Array.isArray(data?.files) || Array.isArray(data?.folders)) {
-                  if (Array.isArray(data?.files)) data.isFolder = false
-                  if (Array.isArray(data?.folders)) data.isFolder = true
-
-                  customPath = crudRoute.get.many
-                }
-              } else if (Object.keys(data)?.length <= 0 || data.order || data.where || data.$option || data.skip || data.take) {
+              if (Object.keys(data)?.length <= 0 || data.order || data.where || data.$option || data.skip || data.take) {
                 customPath = crudRoute.get.many
               }
               return dataRequest('get', ref + customPath + '?query=' + JSON.stringify(axiosData(data)), null, onRequest, node, callback)
@@ -1187,13 +1123,7 @@ class SwygerClient{
               }
               let {data, onRequest, callback} = extractArgs(args)
               let customPath = crudRoute.update.one
-              if (this.#storage) {
-                if (Array.isArray(data?.files) || Array.isArray(data?.folders)) {
-                  if (Array.isArray(data?.files)) data.isFolder = false
-                  if (Array.isArray(data?.folders)) data.isFolder = true
-                  customPath = crudRoute.update.many
-                }
-              } else if (Array.isArray(data)) {
+              if (Array.isArray(data)) {
                 customPath = crudRoute.find.many
               }
               return dataRequest('put', ref + customPath, data, onRequest, node, callback)
@@ -1213,14 +1143,7 @@ class SwygerClient{
               }
               let {data, onRequest, callback} = extractArgs(args)
               let customPath = crudRoute.delete.one
-              if (this.#storage) {
-                if (Array.isArray(data?.files) || Array.isArray(data?.folders)) {
-                  if (Array.isArray(data?.files)) data.isFolder = false
-                  if (Array.isArray(data?.folders)) data.isFolder = true
-                  if (Object.keys(data).length <= 0) data.isFolder = true
-                  customPath = crudRoute.delete.many
-                }
-              } else if (Array.isArray(data) || data.where) {
+              if (Array.isArray(data) || data.where) {
                 customPath = crudRoute.delete.many
               }
               return dataRequest('delete', ref + customPath, data, onRequest, node, callback)
@@ -1239,10 +1162,9 @@ class SwygerClient{
               ...parent
             }
             let listen = parent.ref(path, config, socket)
-            listen?.on().create(callback)
-            listen?.on().update(callback)
-            listen?.on().delete(callback)
-            listen?.on().upload(callback)
+            listen?.on()?.create(callback)
+            listen?.on()?.update(callback)
+            listen?.on()?.delete(callback)
             return node
           }
         }

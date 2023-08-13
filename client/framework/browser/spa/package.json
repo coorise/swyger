@@ -17,7 +17,8 @@
     "dev": "vite",
     "build": "vite build --minify && node  ./replace-src.js",
     "build:dev": "vite build && node  ./replace-src.js",
-    "start": "vite preview"
+    "start": "npm run build && vite preview",
+    "start:dev": "npm run build:dev && vite preview"
   },
   "keywords": [
     "Client",

@@ -1,10 +1,11 @@
 {
   "name": "@swyger/client-storage",
-  "version": "0.1.5",
+  "version": "0.1.12",
   "description": "Swyger Storage Client JS library is used for Swyger Server as consumer Rest API for CRUD operation on a file! Visit the master branch: https://github.com/coorise/swyger-js-client-storage.git",
   "type": "module",
   "main": "dist/swyger-client-storage.min.js",
-  "module": "./src/index.js",
+  "jsdelivr": "dist/swyger-client-storage.min.js",
+  "unpkg": "dist/swyger-client-storage.min.js",
   "publishConfig": {
     "ignore": [
       ".git/",
@@ -25,7 +26,9 @@
     "build": "cross-env NODE_ENV=prod BUILD_MODE=bundle-minify  node ./replace-src.js && vite build -- --minify --bundle",
     "build:dev": "cross-env NODE_ENV=dev node  ./replace-src.js && vite build",
     "build:bundle": "cross-env NODE_ENV=dev BUILD_MODE=bundle  node ./replace-src.js && vite build -- --bundle",
-    "start": "vite preview"
+    "start": "npm run build && vite preview",
+    "start:dev": "npm run build:dev && vite preview",
+    "start:bundle": "npm run build:bundle && vite preview"
   },
   "keywords": [
     "Client",
@@ -53,6 +56,9 @@
   ],
   "author": "Agglomy",
   "license": "MIT",
+  "contributors": [
+    "Ivan Joel Sobgui"
+  ],
   "dependencies": {
     "acebase": "1.29.0",
     "axios": "^1.4.0",

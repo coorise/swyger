@@ -1,4 +1,5 @@
 // Run `npm run start` to start the demo
+//On local package: swyger -- init
 import {
     intro,
     outro,
@@ -21,8 +22,8 @@ import yargs from "yargs/yargs";
 import {hideBin} from "yargs/helpers";
 async function main() {
     let app={}
-    const usage = chalk.red("\nUsage: swyger-cli init \n"
-        + boxen(chalk.green("\n" + "Swyger API v0.1.0" + "\nLet's build project! \n"), {padding: 1, borderColor: 'red', dimBorder: true}) + "\n");
+    const usage = chalk.red("\nUsage: swyger init \n"
+        + boxen(chalk.green("\n" + "Swyger CLI 0.1.6"+ "\nLet's build project! \n"), {padding: 1, borderColor: 'red', dimBorder: true}) + "\n");
 
     console.log(usage);
     let args=hideBin(process.argv) //Or process.argv.slice(2)
@@ -78,8 +79,8 @@ async function main() {
                     app.sideType='client'
                 }
                 else if(arg.server&&arg.client) {
-                    console.log('For server: \nswyger-cli init -n swyger -s \nswyger-cli init --name swyger --server')
-                    console.log('For client: \nswyger-cli init -n swyger -c \nswyger-cli init --name swyger --client')
+                    console.log('For server: \nswyger init -n swyger -s \nswyger init --name swyger --server')
+                    console.log('For client: \nswyger init -n swyger -c \nswyger init --name swyger --client')
                     return process.exit(0);
                 }
                 if(!app?.sideType){
@@ -409,7 +410,7 @@ async function main() {
         .help('help')
         .argv;
     if(argv?._?.[0]!=='init'){
-        console.log('The command should be: swyger-cli init')
+        console.log('The command should be: swyger init')
     }
 
 

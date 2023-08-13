@@ -1,10 +1,12 @@
 import { Server } from "socket.io";
 import jwt from '../../auth/jwt/jwt';
+import socketWildcard from 'socketio-wildcard'
 
 const rootApi = process.env.API_PATH ||'/api/v1';
 
 // for more info: https://github.com/ping58972/node-rest-api-basic-socket-io
 let io;
+
 const init= (httpServer,appModule) => {
   // eslint-disable-next-line global-require
   io = new Server(httpServer, {
@@ -26,6 +28,8 @@ const init= (httpServer,appModule) => {
     next(null,true)
   })*/
   //io.use(appModule.socketRouter.handle())
+  appModule.publicSocket.use(socketWildcard())
+
   appModule.publicSocket.use(appModule.socketRouter.handle())
   appModule.publicSocket.on('connection', async (socket)=>{
     //socket.emit('/api/v1/socket-id',{id:socket.id})
@@ -43,6 +47,16 @@ const init= (httpServer,appModule) => {
           socket.disconnect(true)
         }else {
           appModule.privateSocket = socket
+          socket.on('*',async (event)=>{
+            //console.log('use a wildcard: ', event)
+            if(Array.isArray(event.data))
+              if(typeof event.data?.[0]=='string' && event.data?.[0].charAt(0)==='%'){
+                //socket.broadcast.emit(...event?.data)
+                if(event.data?.[1])
+                  appModule.publicSocket.emit(...event?.data)
+              }
+
+          })
           socket.on(rootApi+'/user-id',async (data)=>{
             //console.log('getting data ', data)
             try {

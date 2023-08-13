@@ -31,7 +31,9 @@ const IndexController = async (args) =>{
     // that is a way to import your template
     // the let is the name and right side is the path
     //so on your parent template, use  eg: <index/>
-    index:'pages/index.html' // should be in /static/public/themes/**/pages/index.html
+    index:'pages/index.html', // should be in /static/public/themes/**/pages/index.html
+    modal_notification:'components/modal/notifications.html'
+
   }
 
   //Here, set your data to be viewed on your template like vue js

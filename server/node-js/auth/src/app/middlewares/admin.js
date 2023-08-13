@@ -3,7 +3,7 @@ import Response from "../helpers/response";
 import HTTP_RESPONSE_CODE from "../helpers/all-http-response-code";
 const isAdmin=(req,res,next)=>{
     let response={}
-    const is_admin=adminToken.getToken(req)
+    const is_admin=adminToken.getTokenInfo(req)
     if(is_admin){
         return next()
     }

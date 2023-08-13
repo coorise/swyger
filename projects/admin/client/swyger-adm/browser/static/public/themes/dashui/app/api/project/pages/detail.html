@@ -1,0 +1,477 @@
+<link rel="stylesheet" :href="'/public/assets/css/grid-list-1.css'">
+<link rel="stylesheet" :href="'/public/assets/css/grid-list-min-1.css'">
+<link rel="stylesheet" :href="envDir+'/resources/assets/scss/user-modal-1.scss'">
+<!-- Container fluid -->
+<div class="bg-primary rounded pt-10 pb-21"></div>
+<div class="container-fluid mt-n22 px-6">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-12">
+      <!-- Page header -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="mb-2 mb-lg-0">
+          <a href="/"><h3 class="mb-0  text-white">Agglomy</h3></a>
+        </div>
+        <div>
+          <a href="/setting" class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2">
+            <i class="bi bi-menu-app fs-4"></i>
+          </a>
+          <div data-bs-toggle="modal" data-bs-target="#exampleModalScrollable" class="icon-shape icon-md bg-light-primary text-primary
+                      rounded-2 position-relative">
+            <i class="bi bi-bell fs-4"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                99+
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <a href="/project/create" class="btn btn-white">New Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- row  -->
+  <div class="row mt-6 p-sm-0">
+    <div class="col-md-12 col-12 p-0">
+      <!-- card  -->
+      <div class="card">
+        <!-- card header  -->
+        <div class="d-flex justify-content-between flex-row flex-wrap align-items-center card-header bg-white  py-4">
+          <h4 class="mb-0">{{project.name}}</h4>
+          <div class="d-flex align-items-center ms-2">
+            Owner: <b>{{project.owner}}</b>
+          </div>
+          <div class="btn-group ms-2">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Edit</a>
+              <a class="dropdown-item" href="#">Activated</a>
+              <a class="dropdown-item" href="#">Share</a>
+              <a class="dropdown-item" href="#">Leave</a>
+              <a class="dropdown-item" href="#">Change Owner</a>
+              <div class="dropdown-divider"></div>
+              <a @click="deleteProject(project.uid)" class="dropdown-item text-danger" >Delete</a>
+            </div>
+          </div>
+        </div>
+        <div class="row card-body">
+          <div class="col-md-8">
+            <!-- Image on Top -->
+            <div class="card">
+              <img src="./assets/images/blog/blog-img-1.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-row align-items-center card-title">
+                  {{project.name}}
+                  <div class="d-flex flex-row">
+                    <a class="btn btn-warning">Edit</a>
+                    <a :href="'/projects/'+project.uid" class="btn btn-primary ms-1">Enter</a>
+                  </div>
+                </div>
+                <p>
+                  Tags:{{project.tags}}
+                </p>
+                <p class="card-text">{{project.description}}...more>/<p>
+                <p class="card-text"><small class="text-muted">Last updated 3
+                  mins ago</small></p>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <div class="card-header bg-white py-4">
+                Teams
+              </div>
+              <div class="card-body">
+                <div class="main-container">
+                  <ul class="grid-wrapper">
+                    <li>
+                      <div class="card" >
+                        <img src="./assets/images/placeholder/placeholder-4by3.svg" class="card-img-top" alt="">
+                        <div class="card-body  mb-0 pb-0">
+                          <h5 class="d-flex justify-content-between flex-row align-items-center card-title">
+                            <b>Team A</b>
+                            <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                            </div>
+                            <div class="btn-group ms-2 float-end">
+                              <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item text-success" href="#">Activated</a>
+                                <a class="dropdown-item" href="#">Detail</a>
+                                <a class="dropdown-item" href="#">Change Owner</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                              </div>
+                            </div>
+                          </h5>
+                          <div class="col">
+                            <p class="card-text">Will do task 1...</p>
+                            Progress:   <!-- labels -->
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                            </div>
+                            <div>
+                              Leader: Agglomy
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer bg-white text-center">
+                          <a href="/projects/jkjkjkjkj/detail" class="btn btn-light-primary">View</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="card">
+                        <img src="./assets/images/placeholder/placeholder-4by3.svg" class="card-img-top" alt="">
+                        <div class="card-body">
+                          <h5 class="d-flex justify-content-between flex-row align-items-center card-title">
+                            <b>Team C</b>
+                            <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                            </div>
+                            <div class="btn-group ms-2 float-end">
+                              <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item text-danger" href="#">Deactivated</a>
+                                <a class="dropdown-item" href="#">Detail</a>
+                                <a class="dropdown-item" href="#">Change Owner</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                              </div>
+                            </div>
+                          </h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-footer bg-white text-center">
+                          <a href="#" class="btn btn-light-primary">View</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="card" >
+                        <img src="./assets/images/placeholder/placeholder-4by3.svg" class="card-img-top" alt="">
+                        <div class="card-body">
+                          <h5 class="d-flex justify-content-between flex-row align-items-center card-title">
+                            <b>Team B</b>
+                            <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                              <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                            </div>
+                            <div class="btn-group ms-2 float-end">
+                              <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Activate</a>
+                                <a class="dropdown-item" href="#">Detail</a>
+                                <a class="dropdown-item" href="#">Change Owner</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                              </div>
+                            </div>
+                          </h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <div class="card-footer bg-white text-center">
+                          <a href="#" class="btn btn-light-primary">View</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-footer bg-white text-center">
+                <a href="#" class="link-primary">Load more...</a>
+
+              </div>
+            </div>
+            <div class="card mt-2">
+              <div class="card-header bg-white py-4">
+                Members
+              </div>
+              <div class="card-body">
+                <div class="main-container-min">
+                  <ul class="grid-wrapper-min">
+                    <li data-bs-toggle="modal" data-bs-target="#userModalScrollable">
+                      <div class="col">
+                  <span class="avatar avatar-sm">
+                    <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                  </span>
+                        <div>
+                          Joel
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col">
+                  <span class="avatar avatar-sm">
+                    <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                  </span>
+                        <div>
+                          Joel
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col">
+                  <span class="avatar avatar-sm">
+                    <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                  </span>
+                        <div>
+                          Joel
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col">
+                  <span class="avatar avatar-sm">
+                    <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                  </span>
+                        <div>
+                          Joel
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col">
+                  <span class="avatar avatar-sm">
+                    <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                  </span>
+                        <div>
+                          Joel
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="card-footer bg-white text-center">
+                <a href="#" class="link-primary">Load more...</a>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4>See Also: </h4>
+            <div class="mb-2">
+              <!-- Horizontal -->
+              <div class="card" >
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="./assets/images/blog/blog-img-1.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <h5 class="d-flex justify-content-between flex-row align-items-center">
+                      <b>Geetify</b>
+                      <div>
+                        Owner: Agglomy
+                      </div>
+                      <div class="btn-group ms-2 float-end">
+                        <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Edit</a>
+                          <a class="dropdown-item text-success" href="#">Activated</a>
+                          <a class="dropdown-item" href="#">Detail</a>
+                          <a class="dropdown-item" href="#">Change Owner</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item text-danger" href="#">Delete</a>
+                        </div>
+                      </div>
+                    </h5>
+                    <div class="card-text">This is a wider card with supporting text...</div>
+                    <div class="d-flex justify-content-between flex-row align-items-center card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                      <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <!-- Horizontal -->
+              <div class="card" >
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="./assets/images/blog/blog-img-1.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <h5 class="d-flex justify-content-between flex-row align-items-center">
+                      <b>Geetify</b>
+                      <div>
+                        Owner: Agglomy
+                      </div>
+                      <div class="btn-group ms-2 float-end">
+                        <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Edit</a>
+                          <a class="dropdown-item text-success" href="#">Activated</a>
+                          <a class="dropdown-item" href="#">Detail</a>
+                          <a class="dropdown-item" href="#">Change Owner</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item text-danger" href="#">Delete</a>
+                        </div>
+                      </div>
+                    </h5>
+                    <div class="card-text">This is a wider card with supporting text...</div>
+                    <div class="d-flex justify-content-between flex-row align-items-center card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                      <div class="avatar-group">
+                            <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-2.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm">
+                              <img alt="avatar" src="assets/images/avatar/avatar-3.jpg" class="rounded-circle">
+                            </span>
+                        <span class="avatar avatar-sm avatar-primary">
+                              <span class="avatar-initials rounded-circle
+                                fs-6">+5</span>
+                            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card footer  -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<style>
+  @media only screen and (min-width: 700px) {
+    .modal-content {
+      width: 150%;
+      transform: translateX(-13%);
+    }
+  }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="userModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content" style="background-color: transparent;border: 0;">
+      <div class="modal-body modal-wrapper">
+        <div class="">
+          <div class="profile-card js-profile-card">
+            <div class="profile-card__img">
+              <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg" alt="profile card">
+            </div>
+
+            <div class="profile-card__cnt js-profile-cnt">
+              <div class="profile-card__name">Muhammed Erdem</div>
+              <div class="profile-card__txt">Front-end Developer from <strong>Mesopotamia</strong></div>
+              <div class="profile-card-loc">
+        <span class="profile-card-loc__icon">
+          <svg class="icon"><use xlink:href="#icon-location"></use></svg>
+        </span>
+
+                <span class="profile-card-loc__txt">
+          Istanbul, Turkey
+        </span>
+              </div>
+
+              <div class="profile-card-inf">
+                <div class="profile-card-inf__item">
+                  <div class="profile-card-inf__title">3</div>
+                  <div class="profile-card-inf__txt">Projects</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                  <div class="profile-card-inf__title">5</div>
+                  <div class="profile-card-inf__txt">Teams</div>
+                </div>
+              </div>
+
+              <div class="profile-card-social">
+                I am a joyful person
+              </div>
+
+              <div class="profile-card-ctr">
+                <button class="profile-card__button button--blue js-message-btn">Message</button>
+                <button class="profile-card__button button--orange">Manage</button>
+              </div>
+            </div>
+
+            <div class="profile-card-message js-message">
+              <form class="profile-card-form">
+                <div class="profile-card-form__container">
+                  <textarea placeholder="Say something..."></textarea>
+                </div>
+
+                <div class="profile-card-form__bottom">
+                  <button class="profile-card__button button--blue js-message-close">
+                    Send
+                  </button>
+
+                  <button class="profile-card__button button--gray js-message-close">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+
+              <div class="profile-card__overlay js-message-close"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,42 @@
+<!--begin::Global Stylesheets Custom-->
+<link href="/public/assets/css/component.css" rel="stylesheet" type="text/css" />
+<!--end::Global Stylesheets Custom-->
+<script type="module">
+  const envAttribute=parent.document.getElementById('root_html').getAttribute('env')
+  let dir=envAttribute==='prod'?'':'/src'
+  try {
+    //document.parentElement.get
+    let data = parent.document.getElementById('root_frame').data
+    let links  =document.querySelectorAll('a')
+    links.forEach(link=>{
+      link.setAttribute('target','_parent')
+    })
+
+    //console.log('Child Data Test')
+    if(dir==='/src') console.log(data)
+    /*const find=async ()=> await (await fetch(data.view_path)).text()
+    find().then(template=>{
+      //console.log('template ', template)
+
+    })*/
+    /*window.onmessage=async function (event){
+      if(event.origin === window.top.location.origin){
+
+        console.log('Event data')
+        console.log(event.data)
+        //window.location.href='/'+event.data
+      }
+    }*/
+    import(`${dir}/resources/vendors/petite-vue/index.js`)
+      .then(({createApp,reactive, nextTick})=>{
+        createApp(data).mount('#mainView')
+        if(dir==='') console.clear();
+      })
+  }catch (e) {
+    if(dir==='/src') console.clear();
+
+  }
+
+</script>
+
+

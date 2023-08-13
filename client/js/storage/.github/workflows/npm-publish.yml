@@ -3,11 +3,11 @@
 name: Publish NPM Package
 
 on:
-  #push:
-    #branches:
-      #- master
-  release:
-    types: [ published ] #Triggers on publish, visit: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
+  push:
+    branches:
+      - master
+  #release:
+    #types: [ published ] #Triggers on publish, visit: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
 
 jobs:
   release:

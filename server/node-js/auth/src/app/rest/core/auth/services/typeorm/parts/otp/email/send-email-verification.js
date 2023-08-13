@@ -81,14 +81,18 @@ ${html}
             // @ts-ignore
             subject:'Email Verification Code for '+user.email,
             text:text,
-            html:html
+            html:html,
+            config:JSON.stringify({
+                auth:{
+                    user:process.env.NO_REPLY_EMAIL,
+                    pass:process.env.NO_REPLY_PASS
+                }
+            })
         }
         const mailService =await sendMailMessage(
             {
                 url:extApi.url,
-                data:{
-                    data
-                },
+                data,
                 headers: {
                     //"Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${extApi.token}`,

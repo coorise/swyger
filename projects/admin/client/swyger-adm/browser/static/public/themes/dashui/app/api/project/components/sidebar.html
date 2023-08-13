@@ -1,0 +1,295 @@
+<nav class="navbar-vertical navbar">
+  <div class="nav-scroller scroll_theme_parent">
+    <!-- Brand logo -->
+    <a class="navbar-brand" href="/">
+      <img src="assets/images/brand/logo/logo.svg" alt="">
+    </a>
+    <!-- Navbar nav -->
+    <ul class="navbar-nav flex-column" id="sideNavbar">
+      <li class="nav-item">
+        <a class="nav-link has-arrow  active " href="/projects/hjhjhjhjhjh">
+          <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Dashboard
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <div class="ms-2 me-2">
+          <input type="search" class="form-control p-1" placeholder="Search api/storage/setting...">
+
+        </div>
+      </li>
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="navbar-heading">APPS</div>
+      </li>
+      <li class="nav-item  ms-2 me-2" >
+        <a class=" nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navApp" aria-expanded="false" aria-controls="navApp">
+          <i data-feather="lock" class="nav-icon  icon-xs me-2">
+          </i> App
+        </a>
+        <div id="navApp" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/plugins"> Plugins</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/analytics"> Analytics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/projects/hjhjhjhjhjh/todo"> Todo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/profile"> Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/campaign"> Campaign</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/mail"> Mail</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/messenger"> Messenger</a>
+            </li>
+
+          </ul>
+        </div>
+
+      </li>
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="navbar-heading">API</div>
+      </li>
+
+      <!-- Nav item -->
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Authentication
+        </a>
+        <div id="navAuthentication" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/"> Access</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/users"> Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/auth/setting"> Setting</a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="card nav-item ms-2 me-2">
+        <a class="nav-link has-arrow bg-secondary text-white rounded collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navDatabase" aria-expanded="false" aria-controls="navDatabase">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Database
+        </a>
+        <div id="navDatabase" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link text-dark" :href="'/projects/'+project.uid+'/database'"> Data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="v/projects/hjhjhjhjhjh/database/rules"> Rules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="v/projects/hjhjhjhjhjh/database/setting"> Setting</a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navStorage" aria-expanded="false" aria-controls="navStorage">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Storage
+        </a>
+        <div id="navStorage" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/storage"> Files</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/storage/rules"> Rules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/storage/setting">
+                Setting
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="navbar-heading">Functions</div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navAPIFunction" aria-expanded="false" aria-controls="navAPIFunction">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> API Function
+        </a>
+        <div id="navAPIFunction" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/function/new"> Create New Function</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/functions"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/function/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item  ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navWebhooks" aria-expanded="false" aria-controls="navWebhooks">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Webhooks
+        </a>
+        <div id="navWebhooks" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/webhook/new"> Create New Hook</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/webhooks"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/webhook/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navCron" aria-expanded="false" aria-controls="navCron">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Cron
+        </a>
+        <div id="navCron" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/cron/new"> Create New Job</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/crons"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/cron/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navTasks" aria-expanded="false" aria-controls="navTasks">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Tasks
+        </a>
+        <div id="navTasks" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/tasks"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/task/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navTokens" aria-expanded="false" aria-controls="navTokens">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Tokens
+        </a>
+        <div id="navTokens" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/token/new"> Create New Token</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/tokens"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/token/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="navbar-heading">Components</div>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navComponents" aria-expanded="false" aria-controls="navAPIFunction">
+          <i data-feather="lock" class="nav-icon icon-xs me-2">
+          </i> Custom
+        </a>
+        <div id="navComponents" class="collapse pb-2" data-bs-parent="#sideNavbar">
+          <ul class="nav ps-2 flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/component/new"> Create New Component</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  " href="/projects/hjhjhjhjhjh/components"> List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/projects/hjhjhjhjhjh/component/setting">
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="navbar-heading">Setting</div>
+      </li>
+
+
+      <!-- Nav item -->
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow " href="/projects/hjhjhjhjhjh/setting">
+          <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+          </i>  Setting
+        </a>
+      </li>
+      <li class="nav-item ms-2 me-2">
+        <a class="nav-link has-arrow " href="/projects/hjhjhjhjhjh/doc">
+          <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+          </i>  Docs
+        </a>
+      </li>
+      <li class="nav-item  ms-2 me-2">
+        <a class="nav-link has-arrow " href="/signout">
+          <i data-feather="git-pull-request" class="nav-icon icon-xs me-2">
+          </i>  Signout
+        </a>
+      </li>
+
+
+
+
+    </ul>
+
+  </div>
+</nav>

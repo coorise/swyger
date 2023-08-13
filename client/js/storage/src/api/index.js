@@ -704,9 +704,7 @@ class SwygerClient{
     }
     let event=(path,socket)=>{
       let ref='%'+path
-      let parent=this.init(req)
-      delete parent.auth().login
-      delete parent.auth().register
+      let parent=this.init(req)?.storage()
       return {
         private:(id=generateQuickGuid())=>{
           return parent.event(path + id)
@@ -714,40 +712,45 @@ class SwygerClient{
         child:(childPath)=>{
           return parent.event(path + childPath)
         },
-        emit:(data,callback)=>{
+        push:(data,callback)=>{
+          let event=parent.event(path)
           socket?.emit(ref,data)
-          if(typeof callback=='function') parent.event(path).do(callback)
+          if(typeof callback=='function') event?.onValue(callback)
           return {
-            ...parent.event(path),
+            ...event,
             ...parent
           }
         },
-        do:(callback)=>{
+        onValue:(callback)=>{
+          let event=parent.event(path)
           socket?.on(ref,(result)=>{
             if(typeof callback=='function')
               callback({
-                ...parent.event(path),
+                ...event,
                 ...parent,
                 value:result
               })
           })
           return {
-            ...parent.event(path),
+            ...event,
             ...parent
           }
         },
-        onAny:(callback)=>{
+        onAnyValue:(callback)=>{
           socket?.onAny((eventName,args)=>{
-
+            let event=parent.event(eventName)
             if(typeof callback =='function') callback(
               eventName,
               {
                 value:args,
-                ...parent.event(eventName),
+                ...event,
                 ...parent
               }
             )
           })
+          return {
+            ...parent
+          }
         }
       }
     }
@@ -1232,10 +1235,10 @@ class SwygerClient{
               ...parent
             }
             let listen=parent.ref(path,config,socket)
-            listen?.on().create(callback)
-            listen?.on().update(callback)
-            listen?.on().delete(callback)
-            listen?.on().upload(callback)
+            listen?.on()?.create(callback)
+            listen?.on()?.update(callback)
+            listen?.on()?.delete(callback)
+            listen?.on()?.upload(callback)
             return node
           }
         }

@@ -10,7 +10,7 @@
         Welcome to Swyger Database API JS Client!
     </h1>
 </div>
-<script type="module">
+<script>
     // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client-database
     //then save it somewhere in your directory like "/dist/swyger-client-database.min.js"
 
@@ -45,6 +45,13 @@
         //OR listener
         //ref.onValue(callback)
         //...
+        /*let database=client.database()
+        let event=database?.event('event_name')
+        //console.log('Event value: ', event)
+        event?.push('pppppp')
+        event?.onValue(({value})=>{
+            console.log('Projects List:  ',value)
+        })*/
     })()
 
 

@@ -10,7 +10,7 @@
         Welcome to Swyger Storage API JS Client!
     </h1>
 </div>
-<script type="module">
+<script>
     // Download the swyger auth client library on: https://www.unpkg.com/@swyger/client-storage
     //then save it somewhere in your directory like "/dist/swyger-client-storage.min.js"
 
@@ -22,20 +22,26 @@
         let config={
             //Configure the offline DB
             OFFLINE_DB_NAME:{
-                DATABASE:'swyger_database'
+                AUTH:'swyger_auth',
+                DATABASE:'swyger_database',
+                STORAGE:'swyger_storage'
             },
 
             //Configure the server
             HOST_SERVER:{
-                AUTH:'http://localhost:4100', //Required for protected route
+                AUTH:'http://localhost:4100',
+                DATABASE:'http://localhost:4400',
                 STORAGE:'http://localhost:4500',
             },
             API_VERSION:{
                 AUTH:'/api/v1',
+                DATABASE:'/api/v1',
                 STORAGE:'/api/v1',
             },
+            AUTO_REFRESH_TOKEN_TIMEOUT:1500000, //in millisecond= 25 minutes
             // A Unique Api key for all your servers
-            API_KEY:'your_api_key'
+            //API_KEY:'api_key'
+            API_KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3IiOiJzd3lnZXIiLCJpYXQiOjE2OTA1MDY0MDl9.eRkSLw7wqeZ1Wzp1oh2aqV94ucl98y1gdc9_rCZNCSk'
         }
         let client= SwygerStorageClient.init(config)
 
@@ -45,12 +51,10 @@
             channelId:'discord-channel-id'
         }
         let location='local' //discord/aws/google
-        let storageRef=client?.storage(location,storageConfig).ref('/your/parent/ref') //like firebase storage
+        //let storageRef=client?.storage(location,storageConfig).ref('/your/parent/ref') //like firebase storage
         //storageRef.upload({object},callback)
         //...
-    })()
-
-
+    })();
 
 </script>
 </body>

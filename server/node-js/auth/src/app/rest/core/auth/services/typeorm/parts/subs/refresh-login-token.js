@@ -73,7 +73,6 @@ const refreshLoginToken = async (entities,data, location) => {
         return newRefreshToken
     } else {
         // @ts-ignore
-
         let refreshNewToken=await generateRefreshToken(entities,
             Object.assign({},data),location);
         //console.log('get data user', refreshToken?.data)

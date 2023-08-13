@@ -1,7 +1,6 @@
 import MailComposer from 'nodemailer/lib/mail-composer'
 import nodemailer from 'nodemailer'
 
-
 //visit https://nodemailer.com/extras/mailcomposer/#attachments
 const mailComposer=async (data)=>{
     const mail=new MailComposer(data)
@@ -26,7 +25,6 @@ const mailComposer=async (data)=>{
 }
 const NodeMailerClient={
     send:(data,config)=>{
-
         let transporter = nodemailer.createTransport(config);
         return new Promise(resolve=>{
             transporter.sendMail(data, function(error, info){

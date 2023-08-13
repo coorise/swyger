@@ -135,3 +135,7 @@ v*.zip
 
 # Remove Ide files
 .idea/
+
+#Ignoring ace base data except rules.json
+database/swyger.acebase/*
+!database/swyger.acebase/rules.json

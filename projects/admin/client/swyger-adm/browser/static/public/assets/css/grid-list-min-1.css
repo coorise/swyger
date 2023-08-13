@@ -1,0 +1,19 @@
+.grid-wrapper-min{
+  --auto-grid-min-size: 8rem;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+
+}
+.grid-wrapper-min li{
+  list-style-type: none;
+}
+.main-container-min{
+  margin: 0 auto;
+  max-width: 1170px;
+  padding:2rem 1rem;
+}

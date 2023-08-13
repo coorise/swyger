@@ -28,8 +28,8 @@ or globally ``npm i -g @swyger/client``
 
 ## Common Commands:
 
-- ``swyger-cli -- -h``: To get the commands and option
-- ``swyger-cli -- init``: To init the project
+- ``swyger -h``: To get the commands and option
+- ``swyger init``: To init the project
   - ``init`` command can be directly chained with:
     - ``-n your-project-name``: To create the project name
 

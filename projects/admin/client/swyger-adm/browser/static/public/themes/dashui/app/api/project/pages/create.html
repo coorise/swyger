@@ -1,0 +1,501 @@
+<link rel="stylesheet" href="assets/css/navbar.css">
+<link rel="stylesheet" href="/public/assets/css/ranger-slide-1.css">
+<link rel="stylesheet" href="assets/wizard/css/bd-wizard.css">
+<link rel="stylesheet" :href="envDir+'/resources/assets/scss/confetti-1.scss'">
+<header class="sticky-top">
+  <div class="nav-wrapper">
+    <div class="logo-container mt-4">
+      <a href="/">
+        <h2 class="logo"><b>Agglomy</b></h2>
+      </a>
+    </div>
+    <nav>
+      <input class="hidden" type="checkbox" id="menuToggle">
+      <label class="menu-btn" for="menuToggle">
+        <div class="menu"></div>
+        <div class="menu"></div>
+        <div class="menu"></div>
+      </label>
+      <div class="nav-container">
+        <ul class="nav-tabs">
+          <li class="nav-tab">Home</li>
+          <li class="nav-tab">Projects</li>
+          <li class="nav-tab">FAQ</li>
+          <li class="nav-tab">Setting</li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<div v-if="congratulation">
+  <div class="wrapper">
+    <div>
+      <div class="confetti-149"></div>
+      <div class="confetti-148"></div>
+      <div class="confetti-147"></div>
+      <div class="confetti-146"></div>
+      <div class="confetti-145"></div>
+      <div class="confetti-144"></div>
+      <div class="confetti-143"></div>
+      <div class="confetti-142"></div>
+      <div class="confetti-141"></div>
+      <div class="confetti-140"></div>
+      <div class="confetti-139"></div>
+      <div class="confetti-138"></div>
+      <div class="confetti-137"></div>
+      <div class="confetti-136"></div>
+      <div class="confetti-135"></div>
+      <div class="confetti-134"></div>
+      <div class="confetti-133"></div>
+      <div class="confetti-132"></div>
+      <div class="confetti-131"></div>
+      <div class="confetti-130"></div>
+      <div class="confetti-129"></div>
+      <div class="confetti-128"></div>
+      <div class="confetti-127"></div>
+      <div class="confetti-126"></div>
+      <div class="confetti-125"></div>
+      <div class="confetti-124"></div>
+      <div class="confetti-123"></div>
+      <div class="confetti-122"></div>
+      <div class="confetti-121"></div>
+      <div class="confetti-120"></div>
+      <div class="confetti-119"></div>
+      <div class="confetti-118"></div>
+      <div class="confetti-117"></div>
+      <div class="confetti-116"></div>
+      <div class="confetti-115"></div>
+      <div class="confetti-114"></div>
+      <div class="confetti-113"></div>
+      <div class="confetti-112"></div>
+      <div class="confetti-111"></div>
+      <div class="confetti-110"></div>
+      <div class="confetti-109"></div>
+      <div class="confetti-108"></div>
+      <div class="confetti-107"></div>
+      <div class="confetti-106"></div>
+      <div class="confetti-105"></div>
+      <div class="confetti-104"></div>
+      <div class="confetti-103"></div>
+      <div class="confetti-102"></div>
+      <div class="confetti-101"></div>
+      <div class="confetti-100"></div>
+      <div class="confetti-99"></div>
+      <div class="confetti-98"></div>
+      <div class="confetti-97"></div>
+      <div class="confetti-96"></div>
+      <div class="confetti-95"></div>
+      <div class="confetti-94"></div>
+      <div class="confetti-93"></div>
+      <div class="confetti-92"></div>
+      <div class="confetti-91"></div>
+      <div class="confetti-90"></div>
+      <div class="confetti-89"></div>
+      <div class="confetti-88"></div>
+      <div class="confetti-87"></div>
+      <div class="confetti-86"></div>
+      <div class="confetti-85"></div>
+      <div class="confetti-84"></div>
+      <div class="confetti-83"></div>
+      <div class="confetti-82"></div>
+      <div class="confetti-81"></div>
+      <div class="confetti-80"></div>
+      <div class="confetti-79"></div>
+      <div class="confetti-78"></div>
+      <div class="confetti-77"></div>
+      <div class="confetti-76"></div>
+      <div class="confetti-75"></div>
+      <div class="confetti-74"></div>
+      <div class="confetti-73"></div>
+      <div class="confetti-72"></div>
+      <div class="confetti-71"></div>
+      <div class="confetti-70"></div>
+      <div class="confetti-69"></div>
+      <div class="confetti-68"></div>
+      <div class="confetti-67"></div>
+      <div class="confetti-66"></div>
+      <div class="confetti-65"></div>
+      <div class="confetti-64"></div>
+      <div class="confetti-63"></div>
+      <div class="confetti-62"></div>
+      <div class="confetti-61"></div>
+      <div class="confetti-60"></div>
+      <div class="confetti-59"></div>
+      <div class="confetti-58"></div>
+      <div class="confetti-57"></div>
+      <div class="confetti-56"></div>
+      <div class="confetti-55"></div>
+      <div class="confetti-54"></div>
+      <div class="confetti-53"></div>
+      <div class="confetti-52"></div>
+      <div class="confetti-51"></div>
+      <div class="confetti-50"></div>
+      <div class="confetti-49"></div>
+      <div class="confetti-48"></div>
+      <div class="confetti-47"></div>
+      <div class="confetti-46"></div>
+      <div class="confetti-45"></div>
+      <div class="confetti-44"></div>
+      <div class="confetti-43"></div>
+      <div class="confetti-42"></div>
+      <div class="confetti-41"></div>
+      <div class="confetti-40"></div>
+      <div class="confetti-39"></div>
+      <div class="confetti-38"></div>
+      <div class="confetti-37"></div>
+      <div class="confetti-36"></div>
+      <div class="confetti-35"></div>
+      <div class="confetti-34"></div>
+      <div class="confetti-33"></div>
+      <div class="confetti-32"></div>
+      <div class="confetti-31"></div>
+      <div class="confetti-30"></div>
+      <div class="confetti-29"></div>
+      <div class="confetti-28"></div>
+      <div class="confetti-27"></div>
+      <div class="confetti-26"></div>
+      <div class="confetti-25"></div>
+      <div class="confetti-24"></div>
+      <div class="confetti-23"></div>
+      <div class="confetti-22"></div>
+      <div class="confetti-21"></div>
+      <div class="confetti-20"></div>
+      <div class="confetti-19"></div>
+      <div class="confetti-18"></div>
+      <div class="confetti-17"></div>
+      <div class="confetti-16"></div>
+      <div class="confetti-15"></div>
+      <div class="confetti-14"></div>
+      <div class="confetti-13"></div>
+      <div class="confetti-12"></div>
+      <div class="confetti-11"></div>
+      <div class="confetti-10"></div>
+      <div class="confetti-9"></div>
+      <div class="confetti-8"></div>
+      <div class="confetti-7"></div>
+      <div class="confetti-6"></div>
+      <div class="confetti-5"></div>
+      <div class="confetti-4"></div>
+      <div class="confetti-3"></div>
+      <div class="confetti-2"></div>
+      <div class="confetti-1"></div>
+      <div class="confetti-0"></div>
+    </div>
+    <main class="d-flex justify-content-center align-items-center">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <!-- Center alignment -->
+        <div class="card text-center">
+          <div class="card-header">
+            <b>{{project.name}}</b>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <div class="d-flex flex-row justify-content-around align-items-center">
+              <a href="/" class="btn btn-primary">Home</a>
+              <a :href="'/projects/'+project.uid" class="btn btn-primary">Enter</a>
+              <a  class="btn btn-primary">Share</a>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            Created just Now!
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <div @click="makeNewProject()" class="btn btn-success">Create a New Project</div>
+        </div>
+      </div>
+      <div class="col-3"></div>
+    </main>
+  </div>
+</div>
+<div v-if="!congratulation">
+  <main class="d-flex justify-content-center align-items-center">
+    <div  class="container">
+      <div id="wizard" role="application" class="wizard clearfix vertical">
+        <div class="steps clearfix">
+          <ul role="tablist">
+            <!-- class="first done" aria-selected="false"-->
+            <li @click="currentStep(0)" role="tab" :class="{current:activeStep===0?true:false,done:activeSteps>=0?true:false}" class="first" :aria-disabled="activeSteps>=0?false:true" :aria-selected="activeSteps>=0?true:false">
+              <a id="wizard-t-0"  aria-controls="wizard-p-0">
+                <span class="current-info audible">current step: </span>
+                <span class="number">1</span>
+              </a>
+            </li>
+            <!-- class="current" aria-disabled="false" aria-selected="true"-->
+            <!-- class="done" aria-selected="false" -->
+            <li @click="currentStep(1)" role="tab" :class="{current:activeStep===1?true:false,done:(activeSteps>=1)?true:false,disabled:(activeSteps>=2)?true:false}" class="" :aria-disabled="activeSteps>=1?false:true" :aria-selected="activeSteps>=1?true:false">
+              <a id="wizard-t-1"  aria-controls="wizard-p-1">
+                <span class="number">2</span>
+              </a>
+            </li>
+            <!-- class="done" -->
+            <li @click="currentStep(2)" role="tab" :class="{current:activeStep===2?true:false,done:activeSteps>=2?true:false,disabled:(activeSteps>=3)?true:false}" class="" :aria-disabled="activeSteps>=2?false:true" :aria-selected="activeSteps>=2?true:false">
+              <a id="wizard-t-2" aria-controls="wizard-p-2">
+                <span class="number">3</span></a>
+            </li>
+            <!-- class="last current" aria-disabled="false" aria-selected="true"-->
+            <li @click="currentStep(3)" role="tab" :class="{current:activeStep===3?true:false,done:activeSteps>=3?true:false,disabled:(activeSteps>=4)?true:false}" class=" last" :aria-disabled="activeSteps>=3?false:true" :aria-selected="activeSteps>=3?true:false">
+              <a id="wizard-t-3"  aria-controls="wizard-p-3">
+                <span class="number">4</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="content clearfix">
+          <div :class="{'d-none':activeStep===0?false:true}">
+            <h3 id="wizard-h-0" tabindex="-1" class="title current">Step 1 Title</h3>
+            <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false">
+              <h5 class="bd-wizard-step-title">Step 1</h5>
+              <h2 class="section-heading">Select a project type </h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+              <div class="purpose-radios-wrapper">
+                <div @click="projectType('media')" class="purpose-radio">
+                  <input type="radio" name="purpose" id="branding" class="purpose-radio-input" value="Branding" checked="">
+                  <label for="branding" class="purpose-radio-label">
+                       <span class="label-icon">
+                         <img src="assets/wizard/images/icon_branding.svg" alt="branding" class="label-icon-default">
+                         <img src="assets/wizard/images/icon_branding_green.svg" alt="branding" class="label-icon-active">
+                       </span>
+                    <span class="label-text">Social Media</span>
+                  </label>
+                </div>
+                <div @click="projectType('iot')" class="purpose-radio">
+                  <input type="radio" name="purpose" id="mobile-design" class="purpose-radio-input" value="Moile Design">
+                  <label for="mobile-design" class="purpose-radio-label">
+                        <span class="label-icon">
+                          <img src="assets/wizard/images/icon_mobile_design.svg" alt="branding" class="label-icon-default">
+                          <img src="assets/wizard/images/icon_mobile_design_green.svg" alt="branding" class="label-icon-active">
+                        </span>
+                    <span class="label-text">IOT</span>
+                  </label>
+                </div>
+                <div @click="projectType('api')" class="purpose-radio">
+                  <input type="radio" name="purpose" id="web-design" class="purpose-radio-input" value="Web Design">
+                  <label for="web-design" class="purpose-radio-label">
+                          <span class="label-icon">
+                            <img src="assets/wizard/images/icon_web_design.svg" alt="branding" class="label-icon-default">
+                            <img src="assets/wizard/images/icon_web_design_green.svg" alt="branding" class="label-icon-active">
+                          </span>
+                    <span class="label-text">API</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div @keypress.enter="submitForm" :class="{'d-none':activeStep===1?false:true}">
+            <h3 id="wizard-h-1" tabindex="-1" class="title">Step 2 Title</h3>
+            <section id="wizard-p-1" role="tabpanel" aria-labelledby="wizard-h-1" class="body" aria-hidden="true" >
+              <h5 class="bd-wizard-step-title">Step 2</h5>
+              <h2 class="section-heading">Enter the Project Details</h2>
+              <div class="form-group">
+                <label for="projectName" class="sr-only">Project Name</label>
+                <span style="color: red">{{error.project_name_exist}} {{error.project_name_length}}</span>
+                <input @input="onNameTyped" v-model="project.name" type="text" name="projectName" id="projectName" class="form-control" placeholder="Project Name">
+              </div>
+              <div class="form-group">
+                <label for="linkName" class="sr-only">#Link Name</label>
+                <input v-model="project.linkName"  type="text" name="linkName" id="linkName" class="form-control" :placeholder="project.name?.replace(/ +/g, '_').toLowerCase()" disabled>
+              </div>
+              <div class="form-group">
+                <label for="userName" class="sr-only">@Username</label>
+                <input v-model="user.username" :value="user.username" type="text" name="userName" id="userName" class="form-control" :placeholder="user.username">
+              </div>
+              <div class="form-group">
+                <label for="projectDescription" class="sr-only">Description</label>
+                <input v-model="project.description" type="text" name="projectDescription" id="projectDescription" class="form-control" placeholder="Description">
+              </div>
+              <div class="form-group">
+                <label for="projectTag" class="sr-only">Tags</label>
+                <div style="display: flex;flex-direction: row">
+                  <div v-for="tag in tags">
+                    <div v-if="tag!=''" class="me-2">
+                      <span class="badge bg-info">{{ tag }}</span>
+                    </div>
+                  </div>
+                </div>
+                <input @input="onInputTags" v-model="project.tags" type="text" name="projectTag" id="projectTag" class="form-control" placeholder="Tag1, Tag2,Tag3 ,...">
+              </div>
+            </section>
+          </div>
+          <div :class="{'d-none':activeStep===2?false:true}">
+            <h3 id="wizard-h-2" tabindex="-1" class="title">Step 3 Title</h3>
+            <section id="wizard-p-2" role="tabpanel" aria-labelledby="wizard-h-2" class="body" aria-hidden="true" >
+              <h5 class="bd-wizard-step-title">Step 3</h5>
+              <h2 class="section-heading">Select the Service(s) you want to use OR Set it later</h2>
+              <p>By selecting a service beforehand, we will configure the api in background so that you can get started.</p>
+              <div class="purpose-radios-wrapper">
+                <div  class="purpose-radio">
+                  <input v-if="services['AUTH']" type="radio"  id="authService" class="purpose-radio-input" value="Branding" checked="">
+                  <label @click="onSelectedService('AUTH')" for="authService" class="purpose-radio-label">
+                       <span class="label-icon">
+                         <img src="assets/wizard/images/icon_branding.svg" alt="branding" class="label-icon-default">
+                         <img src="assets/wizard/images/icon_branding_green.svg" alt="branding" class="label-icon-active">
+                       </span>
+                    <span class="label-text">AUTH</span>
+                  </label>
+                </div>
+                <div  class="purpose-radio">
+                  <input v-if="services['DATABASE']" type="radio"  id="databaseService" class="purpose-radio-input" value="Mobile Design" checked="">
+                  <label @click="onSelectedService('DATABASE')" for="databaseService" class="purpose-radio-label">
+                        <span class="label-icon">
+                          <img src="assets/wizard/images/icon_mobile_design.svg" alt="branding" class="label-icon-default">
+                          <img src="assets/wizard/images/icon_mobile_design_green.svg" alt="branding" class="label-icon-active">
+                        </span>
+                    <span class="label-text">DATABASE</span>
+                  </label>
+                </div>
+                <div  data-bs-toggle="modal" data-bs-target="#discordModalLong" class="purpose-radio">
+                  <input v-if="services['STORAGE']" type="radio"  id="storageService" class="purpose-radio-input" value="Web Design" checked="">
+                  <label @click="onSelectedService('STORAGE')" for="storageService" class="purpose-radio-label">
+                          <span class="label-icon">
+                            <img src="assets/wizard/images/icon_web_design.svg" alt="branding" class="label-icon-default">
+                            <img src="assets/wizard/images/icon_web_design_green.svg" alt="branding" class="label-icon-active">
+                          </span>
+                    <span class="label-text">STORAGE</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+            <div v-if="storageSelected" class="form-group mt-2">
+              <label for="range" class="sr-only">Preview Size (in gb)</label>
+              <div class="form-control text-center">
+                <input type="range" value="1" min="1" max="1000" id="range" oninput="rangevalue.value=value" class="range-input" style="width: 100%"/>
+              </div>
+              <div class="form-control text-center">
+               <h4><output id="rangevalue" >1</output>GB of storage will be used as preview.</h4>
+                You will be notified when the storage will reach the previewed size.
+              </div>
+
+            </div>
+          </div>
+          <div :class="{'d-none':activeStep===3?false:true}">
+            <h3 id="wizard-h-3" tabindex="-1" class="title">Step 4 Title</h3>
+            <section id="wizard-p-3" role="tabpanel" aria-labelledby="wizard-h-3" class="body" aria-hidden="true" >
+              <h5 class="bd-wizard-step-title">Step 4</h5>
+              <h2 class="section-heading mb-5">Review your Details and Submit</h2>
+              <h6 class="font-weight-bold">Your Project type:</h6>
+              <p class="mb-4" id="project-type">{{project.projectType}}</p>
+              <h6 class="font-weight-bold">Your Project Name:</h6>
+              <p class="mb-4" id="project-link">{{project.name}}</p>
+              <h6 class="font-weight-bold">Your Project Link Name:</h6>
+              <p class="mb-4" id="project-link">#{{project.linkName}}</p>
+              <h6 class="font-weight-bold">Your Username for this Project:</h6>
+              <p class="mb-4" id="project-username">@{{user.username}}</p>
+              <h6 class="font-weight-bold">Your Project Description:</h6>
+              <p class="mb-4" id="project-description">{{project.description}}</p>
+              <h6 class="font-weight-bold">Your Project Tags:</h6>
+              <p class="mb-4" id="project-tags">{{project.tags}}</p>
+              <h6 class="font-weight-bold">Your Project Service:</h6>
+              <p class="mb-4" id="project-service" style="display: flex;flex-direction: row">
+                <div v-for="service in serviceList">
+                  <div v-if="service!=''" class="me-2">
+                    <span class="badge bg-info">{{ service }}</span>
+                  </div>
+                </div>
+              </p>
+            </section>
+          </div>
+        </div>
+        <div  class="actions clearfix">
+          <ul v-if="isCreateProjectLoading" role="menu"   aria-label="Pagination">
+            <li class="loader">
+              Loading...
+            </li>
+          </ul>
+          <ul v-else role="menu" aria-label="Pagination">
+            <li @click="backStep()" :class="{'d-none':activeSteps>0?false:true}" id="previous"  aria-disabled="true">
+              <a  role="menuitem">Previous</a>
+            </li>
+            <li>
+              <div v-if="activeStep==1&&!isFormVerified">
+                <div v-if="project.name.length>=1&&oldProjectName!=project.name">
+                  <div @click="submitForm()" id="next" aria-hidden="false" aria-disabled="false" class="">
+                    <a  role="menuitem">Confirm</a>
+                  </div>
+                </div>
+              </div>
+              <div v-if="activeStep!=1||isFormVerified">
+                <div @click="nextStep()" :class="{'d-none':(activeStep==3&&activeSteps>=3)?true:false}"  id="next" aria-hidden="false" aria-disabled="false" class="">
+                  <a v-if="activeStep==2&&serviceList.length<=0" role="menuitem">Skip</a>
+                  <a v-else role="menuitem">Next</a>
+                </div>
+              </div>
+
+            </li>
+            <li @click="createProject()" :class="{'d-none':(activeStep==3&&activeSteps>=3)?false:true}" id="finish" aria-hidden="true"  class="">
+              <a v-else  role="menuitem">Finish</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/wizard/js/jquery.steps.min.js"></script>
+
+<style>
+  .loader,
+  .loader:before,
+  .loader:after {
+    background: #000000;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+  }
+  .loader {
+    color: #000000;
+    text-indent: -9999em;
+    margin: 88px auto;
+    position: relative;
+    font-size: 11px;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  .loader:before,
+  .loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+  .loader:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  .loader:after {
+    left: 1.5em;
+  }
+  @-webkit-keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+  @keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+
+</style>
+
+

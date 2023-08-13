@@ -1,0 +1,184 @@
+<!-- Page content -->
+<link rel="stylesheet" :href="'/public/assets/css/treeview-1.css'">
+<div class="bg-primary pt-10 pb-21"></div>
+<div class="container-fluid mt-n22 px-6">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-12">
+      <!-- Page header -->
+      <div>
+        <div class="d-flex flex-row flex-wrap justify-content-between align-items-center">
+          <div class="mb-2 mb-lg-0">
+            <h3 class="mb-0  text-white">{{project.name}}</h3>
+          </div>
+          <div style="width: 70%;">
+            <div class="col text-center">
+              <h3 class="mb-0  text-white mb-1">Not secured by Authentication!</h3>
+              <!-- labels -->
+              <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a href="/preojects/jkjkjkj/access" class="btn btn-warning">Go !</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-12 mt-6">
+      <div class="bg-white rounded smooth-shadow-sm">
+        <!-- nav -->
+        <ul class="nav nav-lt-tab px-4" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a :class="{active:activeTab==='index'?true:false}" class="nav-link" href="/projects/jkjkjkjkj/database">Data</a>
+          </li>
+          <li class="nav-item">
+            <a :class="{active:activeTab==='general'?true:false}" class="nav-link" href="/projects/jkjkjkjkj/rules">Rules</a>
+          </li>
+          <li class="nav-item">
+            <a :class="{active:activeTab==='roles'?true:false}" class="nav-link" href="/projects/jkjkjkjkj/setting">Setting</a>
+          </li>
+          <li class="nav-item">
+            <a :class="{active:activeTab==='log'?true:false}" class="nav-link" href="/projects/jkjkjkjkj/log">Logs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- row  -->
+  <div class="row mt-6">
+    <div class="col-md-12 col-12 p-0">
+      <!-- card  -->
+      <div class="card ">
+        <!-- card header  -->
+        <div class="card-header d-flex flex-row flex-wrap align-items-center bg-white">
+          <h4 class="mb-0">Database</h4>
+          <form class="d-flex align-items-center ms-2">
+            <input type="search" class="form-control" placeholder="name/size:<=500/name:||surname">
+          </form>
+          <div class="btn-group ms-2">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Start at:</a>
+              <a class="dropdown-item" href="#">Take:</a>
+              <a class="dropdown-item" href="#">Filter:Date (recent,last month...)</a>
+              <a class="dropdown-item" href="#">Filter:Comparison(<,>,!=,<=)</a>
+              <a class="dropdown-item" href="#">Filter:Condition(Or/And)</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-primary" href="#">Search</a>
+            </div>
+          </div>
+        </div>
+        <!-- table  -->
+        <div class="table-responsive">
+          <div class="pt-2 ps-2">
+            <div class="d-flex flex-row flex-wrap align-items-center" id="fontSizeWrapper">
+              <label for="fontSize">Font size</label>
+              <input class="ms-2" type="range" value="1" id="fontSize" step="0.5" min="0.5" max="3" />
+              <div class="ms-2">Current Path: /root/users/</div>
+            </div>
+            <div class="dataSize" >
+              <ul class="tree">
+                <li>
+              <!--<input type="checkbox" checked="checked" id="c1" />-->
+                  <div class="d-flex flex-row align-items-center">
+                    <input type="checkbox"  id="c1" />
+                    <label class="tree_label card  rounded p-2 position-relative" for="c1">
+                      <div class="input-group flex-nowrap" >
+                        <span class="input-group-text p-1" id="inputGroupPrepend">/root</span>
+                        <input style="width: 4em" placeholder="0:20" type="text" class="form-control rounded-end form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+                        <div class="invalid-feedback">
+                          Please set the begin_at : take
+                        </div>
+                      </div>
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                        24
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </label>
+                    <div class="btn-group ms-1">
+                      <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" >Add Child</a>
+                        <a class="dropdown-item">Add Parent</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                  <ul>
+                    <div v-for="key of Object.keys(data)">
+                      <li v-if="typeof data[key]=='object'">
+                        <!--<input type="checkbox" checked="checked" id="c2" />-->
+                        <div class="d-flex flex-row align-items-center" style="height: 0.3%">
+                          <input type="checkbox"  id="c2" />
+                          <label for="c2" class="tree_label position-relative">
+                            <div @click="onDataClicked(key)" class="input-group flex-nowrap" >
+                              <span class="input-group-text p-1" id="inputGroupPrepend">/{{ key }}</span>
+                              <input style="width: 4em" placeholder="0:20" type="text" class="form-control rounded-end form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+                              <div class="invalid-feedback">
+                                Please set the begin_at : take
+                              </div>
+                            </div>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            2
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                          </label>
+                          <div class="btn-group ms-1">
+                            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Add Child</a>
+                              <a class="dropdown-item" href="#">Add Same Level</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item text-danger" href="#">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="dataClicked[key]" v-scope="DataComponent({data:data[key]})"></div>
+                      </li>
+                      <li v-else class="d-flex flex-row align-items-center">
+                        <span class="border border-dark rounded tree_label p-1">/{{ key }}</span>
+                        <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
+                        <div class="ms-1"> "{{data[key]}}"</div>
+                        <div class="btn-group ms-1">
+                          <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                          </div>
+                        </div>
+                      </li>
+                    </div>
+
+                    <li>
+                      <div class="d-flex flex-row align-items-center">
+                        <input type="checkbox"  id="c1" />
+                        <label class="tree_label card  rounded p-2 position-relative" for="c1">
+                          ...
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            22
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- card footer  -->
+        <div class="card-footer bg-white text-center">
+          <a href="#" class="link-primary">View All Data</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<script src="/public/assets/js/treeview-1.js"></script>
+

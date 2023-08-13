@@ -1,0 +1,120 @@
+<div class="modal fade gd-example-modal-xl" id="newMemberModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">New Member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Validation Form -->
+        <div class="row g-3 needs-validation">
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Email</label>
+            <input type="text" class="form-control" id="validationCustom01" value="user1@agglomy.com" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Username</label>
+            <input type="text" class="form-control" id="validationCustom02" value="user" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4">
+            <fieldset disabled>
+              <label for="validationCustomUsername" class="form-label">Tag</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom03" class="form-label">Password</label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+            <div class="invalid-feedback">
+              Please provide a valid password.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom03" class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" id="validationCustom04" required>
+            <div class="invalid-feedback">
+              Please provide a valid password.
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="validationCustom04" class="form-label">Roles</label>
+            <div class="table-responsive mb-3">
+              <table class="table text-nowrap">
+                <thead class="table-light">
+                <tr>
+                  <th class="w-75">Name</th>
+                  <th>yes/no<i data-feather="smartphone" class="icon-sm me-2"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="border-top-0">
+                    Super Admin
+                  </td>
+                  <td class="border-top-0">
+                    <div class="form-check ">
+                      <input type="checkbox" class="form-check-input" id="customCheckFour">
+                      <label class="form-check-label" for="customCheckFour"></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-top-0">
+                    Admin
+                  </td>
+                  <td class="border-top-0">
+                    <div class="form-check ">
+                      <input type="checkbox" class="form-check-input" id="customCheckFour">
+                      <label class="form-check-label" for="customCheckFour"></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-top-0">
+                    Agent
+                  </td>
+                  <td class="border-top-0">
+                    <div class="form-check ">
+                      <input type="checkbox" class="form-check-input" id="customCheckFour">
+                      <label class="form-check-label" for="customCheckFour"></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-top-0">
+                    Staff
+                  </td>
+                  <td class="border-top-0">
+                    <div class="form-check ">
+                      <input type="checkbox" class="form-check-input" id="customCheckFour">
+                      <label class="form-check-label" for="customCheckFour"></label>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
