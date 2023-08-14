@@ -1,59 +1,164 @@
 <template id="data-template">
-  <ul>
-    <div v-for="key of Object.keys(obj)">
-      <li v-if="typeof obj[key]=='object'">
-        <!--<input type="checkbox" checked="checked" id="c2" />-->
-        <div class="d-flex flex-row align-items-center" style="height: 0.3%">
-          <input type="checkbox"  id="c2" />
-          <label for="c2" class="tree_label position-relative">
-            <div @click="onObjClicked(key)" class="input-group flex-nowrap" >
-              <span class="input-group-text p-1" id="inputGroupPrepend">/{{ key }}</span>
-              <input style="width: 4em" placeholder="0:20" type="text" class="form-control rounded-end form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
-              <div class="invalid-feedback">
-                Please set the begin_at : take
-              </div>
-            </div>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                            2
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
-          </label>
-          <div class="btn-group ms-1">
-            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Add Child</a>
-              <a class="dropdown-item" href="#">Add Same Level</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" href="#">Delete</a>
+  <li @mouseleave="onAddObjPathClicked('')" @keypress.enter.prevent="onObjActionClicked('create',objPath)" v-if="addObjPath===objPath+'/child'" class="d-flex flex-row align-items-center">
+    <span class="tree_label p-1">
+      <div class="input-group border border-dark rounded" style="width: 10em;height: 0.3%">
+        <input v-model="setObj.key"  placeholder="Add key" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+        <div class="invalid-feedback">
+          Please set a valid value
+        </div>
+      </div>
+    </span>
+    <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
+    <div class="input-group ms-2" style="width: 10em;height: 0.3%">"
+      <input v-model="setObj.value" placeholder="Add value" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+      <div class="invalid-feedback">
+        Please set a valid value
+      </div>"
+    </div>
+    <div class="btn-group ms-1">
+      <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+      <div class="dropdown-menu">
+        <a @click="onObjActionClicked('create',objPath)" class="dropdown-item" >Save</a>
+        <div class="dropdown-divider"></div>
+        <a @click="onAddObjPathClicked('')" class="dropdown-item text-danger" >Delete</a>
+      </div>
+    </div>
+  </li>
+  <li @mouseleave="onAddObjPathClicked('')" @keypress.enter.prevent="onObjActionClicked('create',objPath)" v-if="addObjPath===objPath+'/parent'" class="d-flex flex-row align-items-center">
+    <span class="tree_label p-1">
+      <div v-scope="setObj.value={}" class="input-group border border-dark rounded" style="width: 10em;height: 0.3%">
+        <input v-model="setObj.key" placeholder="Add key" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+        <div class="invalid-feedback">
+          Please set a valid value
+        </div>
+      </div>
+    </span>
+    <div class="btn-group ms-1">
+      <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+      <div class="dropdown-menu">
+        <a @click="onObjActionClicked('create',objPath)" class="dropdown-item">Save</a>
+        <div class="dropdown-divider"></div>
+        <a @click="onAddObjPathClicked('')" class="dropdown-item text-danger" >Delete</a>
+      </div>
+    </div>
+  </li>
+  <div v-for="key of partObj">
+    <li v-if="typeof obj[key]=='object'">
+      <!--<input type="checkbox" checked="checked" id="c2" />-->
+      <div class="d-flex flex-row align-items-center" style="height: 0.3%">
+        <input type="checkbox"  :id="objPath+'/'+key" />
+        <label @click="onObjClicked(key)" :for="objPath+'/'+key" class="tree_label position-relative">
+          <div class="input-group flex-nowrap" >
+            <span class="input-group-text p-1" id="inputGroupPrepend">/{{ key }}</span>
+            <input @input="onObjPaginationTyped" style="width: 4em" placeholder="10" type="text" class="form-control rounded-end form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+            <div class="invalid-feedback">
+              Please set the begin_at : take
             </div>
           </div>
-        </div>
-        <div v-if="objClicked[key]" v-scope="DataComponent({data:obj[key]})"></div>
-      </li>
-      <li v-else class="d-flex flex-row align-items-center">
-        <span class="border border-dark rounded tree_label p-1">/{{ key }}</span>
-        <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
-        <div class="ms-1"> "{{obj[key]}}"</div>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                            {{Object.keys(obj[key])?.length||0}}
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+        </label>
         <div class="btn-group ms-1">
           <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
           <div class="dropdown-menu">
-            <a class="dropdown-item text-danger" href="#">Delete</a>
+            <a @click="onAddObjPathClicked(objPath+'/'+key+'/child')" class="dropdown-item" >Add Child</a>
+            <a @click="onAddObjPathClicked(objPath+'/'+key+'/parent')" class="dropdown-item" >Add Same Level</a>
+            <div class="dropdown-divider"></div>
+            <a @click="onObjActionClicked('delete',objPath+'/'+key)" class="dropdown-item text-danger">Delete</a>
           </div>
         </div>
-      </li>
-    </div>
+      </div>
+      <ul>
+        <li @mouseleave="onAddObjPathClicked('')" @keypress.enter.prevent="onObjActionClicked('create',objPath+'/'+key)" v-if="addObjPath===objPath+'/'+key+'/child'" class="d-flex flex-row align-items-center">
+          <span class="tree_label p-1">
+               <div class="input-group border border-dark rounded" style="width: 10em;height: 0.3%">
+                  <input v-model="setObj.key" placeholder="Add key" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+                  <div class="invalid-feedback">
+                    Please set a valid value
+                  </div>
+               </div>
+            </span>
+          <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
+          <div class="input-group ms-2" style="width: 10em;height: 0.3%">"
+            <input v-model="setObj.value" placeholder="Add value" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+            <div class="invalid-feedback">
+              Please set a valid value
+            </div>"
+          </div>
+          <div class="btn-group ms-1">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a @click="onObjActionClicked('create',objPath+'/'+key)" class="dropdown-item" >Save</a>
+              <div class="dropdown-divider"></div>
+              <a @click="onAddObjPathClicked('')" class="dropdown-item text-danger" >Delete</a>
+            </div>
+          </div>
+        </li>
+        <li @mouseleave="onAddObjPathClicked('')" @keypress.enter.prevent="onObjActionClicked('create',objPath+'/'+key)" v-if="addObjPath===objPath+'/'+key+'/parent'" class="d-flex flex-row align-items-center">
+          <span class="tree_label p-1">
+            <div v-scope="setObj.value={}" class="input-group border border-dark rounded" style="width: 10em;height: 0.3%">
+              <input v-model="setObj.key" placeholder="Add key" type="text" class="form-control rounded-0 form-control-sm" id="pagination" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback">
+                Please set a valid value
+              </div>
+            </div>
+          </span>
+          <div class="btn-group ms-1">
+            <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+            <div class="dropdown-menu">
+              <a @click="onObjActionClicked('create',objPath+'/'+key)" class="dropdown-item" href="#">Save</a>
+              <div class="dropdown-divider"></div>
+              <a @click="onAddObjPathClicked('')" class="dropdown-item text-danger" >Delete</a>
+            </div>
+          </div>
+        </li>
+        <div v-if="objClicked[key]" v-scope="DataComponent({data:obj[key],prevPath:objPath})"></div>
+      </ul>
+    </li>
+    <li v-else class="d-flex flex-row align-items-center">
+      <span class="border border-dark rounded tree_label p-1">/{{ key }}</span>
+      <div class="ms-1" style="font-size: 1.5em"><b>:</b></div>
+      <div class="ms-1"> "{{obj[key]}}"</div>
+      <div class="btn-group ms-1">
+        <div class="bi-three-dots-vertical" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+        <div class="dropdown-menu">
+          <a @click="onObjActionClicked('delete',objPath+'/'+key)"  class="dropdown-item text-danger">Delete</a>
+        </div>
+      </div>
+    </li>
+  </div>
 
+  <div v-if="objPagination<Object.keys(obj).length">
     <li>
       <div class="d-flex flex-row align-items-center">
         <input type="checkbox"  id="c1" />
-        <label class="tree_label card  rounded p-2 position-relative" for="c1">
+        <label @click="onObjPaginationClicked" class="tree_label card  rounded p-2 position-relative" for="c1">
           ...
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                            22
+                            {{Object.keys(obj).length-objPagination}}
                             <span class="visually-hidden">unread messages</span>
                           </span>
         </label>
       </div>
     </li>
-  </ul>
+  </div>
+  <div v-if="Object.keys(obj).length<=0">
+    <li>
+      <div class="d-flex flex-row align-items-center">
+        <input type="checkbox"  id="c1" />
+        <label @click="" class="tree_label card  rounded p-2 position-relative" for="c1">
+          <div class="btn-group ms-1">
+            <div data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Value</div>
+            <div class="dropdown-menu">
+              <a @click="onAddObjPathClicked(objPath+'/child')" class="dropdown-item" >Add Child</a>
+              <div class="dropdown-divider"></div>
+              <a @click="onAddObjPathClicked(objPath+'/parent')" class="dropdown-item" >Add Same Level</a>
+            </div>
+          </div>
+        </label>
+      </div>
+    </li>
+  </div>
 </template>

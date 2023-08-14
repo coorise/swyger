@@ -71,13 +71,13 @@
         <div id="navAuthentication" class="collapse pb-2" data-bs-parent="#sideNavbar">
           <ul class="nav ps-2 flex-column">
             <li class="nav-item">
-              <a class="nav-link " href="/projects/hjhjhjhjhjh/"> Access</a>
+              <a class="nav-link " :href="'/projects/'+project.uid+'/auth/access'"> Access</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  " href="/projects/hjhjhjhjhjh/users"> Users</a>
+              <a class="nav-link  " :href="'/projects/'+project.uid+'/auth/users'"> Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  " href="/projects/hjhjhjhjhjh/auth/setting"> Setting</a>
+              <a class="nav-link  " :href="'/projects/'+project.uid+'/auth/setting'"> Setting</a>
             </li>
 
           </ul>
@@ -94,10 +94,10 @@
               <a class="nav-link text-dark" :href="'/projects/'+project.uid+'/database'"> Data</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  " href="v/projects/hjhjhjhjhjh/database/rules"> Rules</a>
+              <a class="nav-link  " :href="'/projects/'+project.uid+'/database/rules'"> Rules</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  " href="v/projects/hjhjhjhjhjh/database/setting"> Setting</a>
+              <a class="nav-link  " :href="'/projects/'+project.uid+'/database/setting'"> Setting</a>
             </li>
 
           </ul>
@@ -111,13 +111,13 @@
         <div id="navStorage" class="collapse pb-2" data-bs-parent="#sideNavbar">
           <ul class="nav ps-2 flex-column">
             <li class="nav-item">
-              <a class="nav-link " href="/projects/hjhjhjhjhjh/storage"> Files</a>
+              <a class="nav-link " :href="'/projects/'+project.uid+'/storage'"> Files</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  " href="/projects/hjhjhjhjhjh/storage/rules"> Rules</a>
+              <a class="nav-link  " :href="'/projects/'+project.uid+'/storage/rules'"> Rules</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="/projects/hjhjhjhjhjh/storage/setting">
+              <a class="nav-link " :href="'/projects/'+project.uid+'/storage/setting'">
                 Setting
               </a>
             </li>

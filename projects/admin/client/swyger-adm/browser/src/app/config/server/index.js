@@ -8,12 +8,9 @@ let ServerConfig={
   ENV:ENV,
   //Configure the server
   HOST_SERVER:{
-    //AUTH:'http://localhost:4100',
-    AUTH:'https://auth.server.agglomy.com',
-    //DATABASE:'http://localhost:4400',
-    DATABASE:'https://database.server.agglomy.com',
-    //STORAGE:'http://localhost:4500',
-    STORAGE:'https://storage.server.agglomy.com',
+    AUTH:'http://localhost:4100',
+    DATABASE:'http://localhost:4400',
+    STORAGE:'http://localhost:4500',
   },
   API_VERSION:{
     AUTH:'/api/v1',
